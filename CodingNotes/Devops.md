@@ -3,7 +3,7 @@
 Si Kubernetes est le "moteur" qui gère tes applications, **Lens est le tableau de bord (dashboard)** qui te permet de piloter ce moteur sans avoir à taper des lignes de commande complexes en permanence.
 En effet, Kubernetes fonctionne normalement via un terminal, puissant mais pas visuel. Le rôle de Lens est d'offrir une interface graphique sur les pods, services et le réseau. Mais aussi au troubleshooting (dépannage) en permettant un accès aux logs et au terminal, on peut aussi centraliser les serveurs sur Lens, surveiller des metrics etc.
 
-test
+test code
 # 📑 Fiche Mémo : Nginx
 
 ## 1. Définition
