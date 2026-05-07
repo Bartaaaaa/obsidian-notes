@@ -1,0 +1,15 @@
+ElasticSearch est un moteur de recherche et d'analyse distribué et open source conçu pour gérer des grands volumes de données et offrir des capacités de recherches quasiment en temps réel. C'est comme une banque de données NoSQL. La recherche y est très performante car il sait où il a mis les objets. On peut y récupérer les données, mais aussi les informations sur les données : comme le nombre de fois qu'un enregistrement correspond à certaines conditions. Il stocke les données sous format JSON.
+ElasticSearch est construit sur [[Apache Lucene]] et il fait partie de la suite Elastic Stack qui comprend [[Kibana]] pour la visualisation des données et [[Logstash]] pour le traitement des données.
+* La force d'Elastic search est déjà sa capacité de recherche avec indexation, mais aussi l'analyse des données en temps réel (interrogation et analyse).
+* Il peut être aussi utilisé par l'équipe DevOps pour le monitoring des systèmes. L'analyse des journeaux et des données d'événements afin de détecter les potentielles anomalies.
+* Il peut servir aussi de base de données pour les applications de veille stratgique (BI) et d'analyse. 
+* La recherche spatiale et les données géographiques est prise en charge ce qui rend adapté aux applications traitant les données géographiques et peut afficher sur une carte d'ou viennent quelle données.
+**Comment ça marche ? **
+- **Indexation*** : Les données sont ingérées dans Elasticsearch via le processus d’indexation. Lors de [l’indexation](https://www.geeksforgeeks.org/dbms/indexing-in-databases-set-1/) , les documents sont analysés, tokenisés et stockés dans des index inversés, ce qui permet des opérations de recherche rapides et efficaces.  
+- **Requêtes** : Les utilisateurs interagissent avec Elasticsearch par le biais de requêtes, qui peuvent être de simples recherches par mots-clés ou des agrégations complexes. Elasticsearch utilise un **DSL (langage spécifique au domaine)*** pour exprimer différents types de requêtes, allant des recherches plein texte de base aux agrégations et filtres avancés.
+-  **Partionnement** : Elasticsearch utilise le partitionnement pour répartir les données sur plusieurs nœuds d'un cluster, améliorant ainsi les performances et l'évolutivité. Chaque partition est un fragment d'index autonome, permettant à Elasticsearch de paralléliser les opérations de recherche et d'indexation.
+- **Replication :** Elasticsearch utilise la réplication pour garantir la redondance des données et la tolérance aux pannes. Chaque partition peut comporter une ou plusieurs répliques, qui servent de sauvegardes en cas de défaillance d'un nœud ou de perte de données.
+- **Recherche distribuée** : Elasticsearch se coordonne avec tous les nœuds du cluster pour récupérer les données pertinentes.. stratégie de recherche d'agragation distribuées afin de paralléliser les calculs et de fusionner les résultats provenant de plusieurs partitions.
+
+MongoDB Connector
+Kibana

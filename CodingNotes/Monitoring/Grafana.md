@@ -1,0 +1,3 @@
+Grafana est une plateforme opensource de visualisation et d'analyse de données. Elle permet de créer des tableaux de bords interactifs et personnalisés pour afficher et analyser des métriques. Il est complémentaire avec [[Prometheus]]. Ce dernier collecte les données riches et fournit un langage d'interrogation puissant et Grafana transforme les métriques en visualisation significatives.
+Les tableaux de bords de Grafana peuvent inclure des graphiques, des jauges, des tableaux...
+![[Pasted image 20251217101409.png]]
