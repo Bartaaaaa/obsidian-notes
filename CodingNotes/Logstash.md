@@ -8,7 +8,7 @@ Lorsque vous configurez le fichier, il est utile de considérer Logstash comme u
 ![[Pasted image 20251218181928.png]]
 Faut lui configurer un fichier logstash.conf dans lequel on va lui définir un json avec les données sur lesquelles il doit taper (l'URI), la collection en question, l'host (9200) ...
 
-Mini exemple de pipelinelogstash : 
+Mini exemple de pipeline logstash : 
 ```conf
 input {
   mongodb {

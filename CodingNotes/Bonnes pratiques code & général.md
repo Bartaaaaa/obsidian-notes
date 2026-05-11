@@ -39,7 +39,7 @@ Quelques avantages :
 - **Meilleure accessibilité :** Le code HTML sémantique et complet dès le départ est beaucoup plus facile à déchiffrer pour les lecteurs d'écran (utilisés par les personnes malvoyantes).
 - **Réduction de la charge du client :** C'est le serveur (qui est puissant) qui fait le calcul lourd de construction de la page. Le client (même avec un vieux téléphone ou un ordinateur peu performant) n'a qu'à afficher le résultat.
 
-XSS DOM BASED, pentest
+
 
 **4 - Comment optimisez-vous une requête SQL pour améliorer les performances de la**
 **base de données ?**
@@ -73,3 +73,5 @@ https://tanstack.com/query/latest
 
 a quoi sert composer.json, package.json mais pk composer
 ouvrir package deb avec sudo dpkg -i
+XSS DOM BASED, pentest
+
