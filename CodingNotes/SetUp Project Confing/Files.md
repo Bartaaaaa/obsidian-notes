@@ -77,3 +77,5 @@ Ces fichiers définissent la **CI/CD** du projet (Continuous Integration / Conti
 Liste les fichiers et dossiers que Git doit ignorer, c'est-à-dire ne jamais committer dans le dépôt. 
 ##### `.dockerignore`
 Liste les fichiers et dossiers que Docker doit ignorer **lors de la construction de l'image**. Quand Docker construit une image, il commence par copier l'intégralité du dossier du projet dans son contexte de build. Sans `.dockerignore`, il copierait `node_modules/`, le dossier `.git/`, les fichiers de logs, etc. Cela rendrait le build beaucoup plus lent (potentiellement des centaines de Mo à transférer) et alourdirait inutilement l'image finale. Le contenu ressemble souvent au `.gitignore` mais avec des choix adaptés au contexte Docker.
+
+
