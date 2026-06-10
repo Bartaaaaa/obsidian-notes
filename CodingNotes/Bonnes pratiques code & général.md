@@ -75,3 +75,6 @@ a quoi sert composer.json, package.json mais pk composer
 ouvrir package deb avec sudo dpkg -i
 XSS DOM BASED, pentest
 
+Language bas niveau vs Haut niveau
+
+steganographie

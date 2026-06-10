@@ -102,3 +102,7 @@ Le Zero-Shot prompting est simplement le concept lorsqu'on donne une tache nouve
 ![[Pasted image 20260516104024.png]]
 Pour des tâches plus complexes, le zero-shot prompting est souvent insuffisant. Donnez des exemples dans l'instruction est ce qu'on appelle le few-shot Learning.
 ![[Pasted image 20260516104256.png]]
+Imaginons que je vous demande : « Qui a gagné la Coupe du monde l’année précédant la naissance de Lionel Messi ? » Que feriez-vous ? Vous procéderiez probablement étape par étape, en notant toutes les solutions intermédiaires nécessaires pour arriver à la bonne réponse. Et c’est exactement ce que permettent également les titulaires d’un LLM.
+Il a été constaté que le simple fait de dire à un LLM de « réfléchir étape par étape » peut améliorer considérablement ses performances dans de nombreuses tâches.
+
+Pourquoi cela fonctionne-t-il ? Nous avons toutes les informations nécessaires pour répondre à cette question. Le problème est que ce type de connaissance composite inhabituelle n’est probablement pas directement ancré dans la mémoire interne du LLM. En revanche, les faits individuels qui le composent pourraient l’être, comme la date d’anniversaire de Messi ou les vainqueurs des différentes Coupes du monde.
