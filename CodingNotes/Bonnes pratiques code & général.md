@@ -71,10 +71,18 @@ Put : modifier toute la donnée, PATCH : modifier qu'une partie
 Check : 
 https://tanstack.com/query/latest
 
-a quoi sert composer.json, package.json mais pk composer
-ouvrir package deb avec sudo dpkg -i
+
+
 XSS DOM BASED, pentest
 
-Language bas niveau vs Haut niveau
+**Languge bas niveau :** 
+Proche du langage des composants électroniques. Le plus bas niveau est le binaire, assembleur, C, C++, etc. Il est directement interprété par la machine.
+**Languge haut niveau :** 
+Langage compréhensible par des humains comme le javascript, qui doit être qui devra être transformé pour être compris par la machine. Le langage haut niveau est plus lent que le bas niveau car il prend plus de temps à être interprété. Par contre il pourra être réutilisé sur toutes les machines, alors que le bas niveau peut ne pas fonctionner selon les composants.
+
 
 steganographie
+
+**Fonction pure :** 
+Same input Same output
+Pas de changements d'états d'objets, pas de logs, pas de call http, écriture dans le dossier.
