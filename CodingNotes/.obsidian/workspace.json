@@ -1,0 +1,236 @@
+{
+  "main": {
+    "id": "cf42b5f24a5f4fcd",
+    "type": "split",
+    "children": [
+      {
+        "id": "24a6e870068a6ba2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "26bc5b2b7a7246d3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Bonnes pratiques code & général.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Bonnes pratiques code & général"
+            }
+          },
+          {
+            "id": "e0b9fc53fb313da2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Bonnes pratiques code & général.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Bonnes pratiques code & général"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3650cc4dea051b12",
+    "type": "split",
+    "children": [
+      {
+        "id": "e574f497c470970b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "48f1ffe3fbb13c3e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "7fa4ebd7593fea6a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Rechercher"
+            }
+          },
+          {
+            "id": "b0c30149a50e0984",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "f64c96fe183aa72e",
+    "type": "split",
+    "children": [
+      {
+        "id": "8e2b6d305ef71189",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "99c65593ed4d9a5b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "create a link.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for create a link"
+            }
+          },
+          {
+            "id": "039ebb70d98a9e45",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "create a link.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from create a link"
+            }
+          },
+          {
+            "id": "ce81d860d04dd801",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "5bb0b0d1e518b812",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "4290722763e3d83d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "create a link.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of create a link"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Ouvrir le sélecteur rapide": false,
+      "graph:Ouvrir la vue graphique": false,
+      "canvas:Créer une nouvelle toile": false,
+      "daily-notes:Ouvrir la note quotidienne": false,
+      "templates:Insérer le modèle": false,
+      "command-palette:Ouvrir la palette de commandes": false,
+      "bases:Créer une nouvelle base": false
+    }
+  },
+  "active": "e0b9fc53fb313da2",
+  "lastOpenFiles": [
+    "Devops.md",
+    "PHP Symfony.md",
+    "Pasted image 20260328115647.png",
+    "Pasted image 20260328114942.png",
+    "Pasted image 20260328114927.png",
+    "Pasted image 20260322114701.png",
+    "React.md",
+    "Bonnes pratiques code & général.md",
+    "Package installation.md",
+    "Logstash.md",
+    "Test de charge (caviardage).md",
+    "Untitled.md",
+    "Git commands.md",
+    "Pasted image 20260301102658.png",
+    "Monitoring/Prometheus.md",
+    "Pasted image 20260216165936.png",
+    "Monitoring/Kibana.md",
+    "Monitoring/Elastic Search.md",
+    "Docker.md",
+    "Xdebug.md",
+    "DataBase.md",
+    "Lucene.md",
+    "Pasted image 20260119140426.png",
+    "Pasted image 20260119135628.png",
+    "Pasted image 20260119092816.png",
+    "Pasted image 20260108093905.png",
+    "Monitoring/Grafana.md",
+    "Monitoring",
+    "Mongo.md",
+    "create a link.md",
+    "Untitled.canvas"
+  ]
+}

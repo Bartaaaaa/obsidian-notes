@@ -35,7 +35,7 @@ Symfony Messenger est un composant implémentant le pattern _Message Queuing_. I
 - Traitements multimédias (redimensionnement d'images, encodage vidéo).
 - Appels à des API tierces (synchronisation avec un CRM/ERP, envois de Webhooks).
 
-Les voter
+Les voter aa
 
 **4 - Expliquer le principe des migrations de Doctrine**
 Les migrations de Doctrine sont un outil puissant permettant de gérer l'évolution de la structure de la base de données dans le cadre d'une application PHP utilisant **Doctrine ORM**. Elles facilitent la création, la modification et la suppression de tables, de colonnes et d'index tout en préservant les données existantes.
