@@ -26,7 +26,7 @@ mon-projet-ecommerce/
 ```
 **Si un conteneur contient tout le code, c'est du monolithique**
 
-**L'architecture en microservices** décompose l'application en services indépendants, chacun responsable d'une fonctionnalité indépendantes. Les services communiques via des [[API REST]]. Cette architecture offre une scalabilité et une indépendance maximale, au prix d'une complexité un peu plus grande.
+**L'architecture en microservices** décompose l'application en services indépendants, chacun responsable d'une fonctionnalité indépendantes. Les services communiques via des [[Protocole d'API]]. Cette architecture offre une scalabilité et une indépendance maximale, au prix d'une complexité un peu plus grande.
 
 **+** facile à faire évoluer, conçue pr l'automatisation CI/CD, opération indépendante entre les services
 **-** tests plus complexes (quand un service a besoin d'un autre), sécurité car communication entre les services, latence, couts quand plus de services
