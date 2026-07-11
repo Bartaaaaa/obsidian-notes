@@ -1,11 +1,8 @@
 
-
-
-
 **Comment créer une application React ?** 
 React de base est juste une librairie, mais on peut en faire une application grâce à des frameworks qui se basent dessus.
 La documentation officielle préconise d'utiliser un framework qui permettent d'utiliser à plein potentiels les composants de React.
-On peut utiliser Next.js. Next.js est un framework construit autour de React qui simplifie plein de fonctionnalités qui ne sont pas incluses dans React de base et qui permet le développement FullStack. Il permet le rendu hybride : côté client et SSR, l'optimisation des performances (fractionnement automatique du code), permet de créer des composants qui s'exécutent uniquement coté serveur, renforce la sécurité en gardant la logique cote serveur, favorisent le SEO grâce au HTML immédiatement disponible.
+On peut utiliser Next.js. **Next.js** est un framework construit autour de React qui simplifie plein de fonctionnalités qui ne sont pas incluses dans React de base et qui permet le développement FullStack. Il permet le rendu hybride : côté client et SSR, l'optimisation des performances (fractionnement automatique du code), permet de créer des composants qui s'exécutent uniquement coté serveur, renforce la sécurité en gardant la logique cote serveur, favorisent le SEO grâce au HTML immédiatement disponible.
 Autre caractéristiques que tout framework doit contenir : support intégré de typescript, tests de qualité de code avec Jest et Cypress, internationalisation et support des langues, etc.
 ![[Pasted image 20260301102658.png]]
 On peut aussi utiliser React router. Pour créer l'app faut lancer la commande npx create-react-router@latetest par ex.
@@ -25,7 +22,7 @@ On peut aussi utiliser React router. Pour créer l'app faut lancer la commande n
 **Webpack :** Le standard historique (celui derrière l'ancien `Create React App`). Très puissant, mais peut être lourd à configurer et lent à compiler sur de gros projets.        
 **Vite (le standard actuel) :** Extrêmement rapide. En développement, il utilise les modules ES natifs du navigateur, ce qui permet un _Hot Module Replacement (HMR)_ quasi instantané (l'application se met à jour à l'écran en millisecondes quand tu sauvegardes ton code). C'est aujourd'hui l'outil recommandé pour initier un projet React pur.
 
--Contrairement aux sites classiques (ex: PHP) où le serveur construit et renvoie un fichier `.html` complet et prêt à l'emploi, le serveur statique de React ne renvoie qu'une coquille HTML vide (`<div id="root"></div>`) accompagnée de ce gros fichier JS.
+-Contrairement aux sites classiques (ex: PHP) où le serveur construit et renvoie un fichier `.html` complet et prêt à l'emploi, le serveur statique de React ne renvoie qu'une coquille HTML vide (`<div id="root"></div>`) accompagnée de ce gros fichier JS. Alors que pr le SEO, il comprend bcp plus rapidement l'html que le js.
 
 **3. Pourquoi React pur est mauvais pour le SEO ?**
 
@@ -33,7 +30,7 @@ Quand le **crawler d'indexation** (ex: Googlebot) parcourt le site, le serveur s
 
 **4. Pourquoi dit-on que React est une SPA (Single Page Application) ?** 
 
-Une application React ne possède qu'**une seule vraie page HTML** (celle envoyée au tout début). La navigation vers d'autres pages n'est qu'une illusion créée par JavaScript.
+Une application React ne possède qu'**une seule vraie page HTML** (celle envoyée au tout début). La navigation vers d'autres pages n'est qu'une illusion créée par JavaScript. On charge tout au début avec le bundler, et react va juste charger un composant différents en fonction de l'url sans redemander au serveur de charger la page.
 
 **Comment les composants sont-ils chargés ? (Bundle vs Code Splitting)**
 
@@ -44,20 +41,20 @@ Une application React ne possède qu'**une seule vraie page HTML** (celle envoy�
 **L'optimisation indispensable : Le Code Splitting (Fractionnement du code)** Pour résoudre ce problème de lenteur initiale, on utilise le _Code Splitting_ (souvent implémenté avec `React.lazy` et `Suspense`).
 **Le concept :** Au lieu de créer un seul énorme fichier JS, le Bundler (Vite, Webpack) va diviser l'application en de multiples petits fichiers appelés des **chunks**.
 
-**En pratique** (Lazy Loading) : Le navigateur ne télécharge initialement qu'un tout petit fichier JS contenant le moteur React et le code strictement nécessaire pour afficher la page d'Accueil. Le code de la page "Contact" (un _chunk_ séparé) ne sera téléchargé à la volée **que** si l'utilisateur décide de cliquer sur le lien "Contact".
+**En pratique** (Lazy Loading) : Le navigateur ne télécharge initialement qu'un tout petit fichier JS contenant le moteur React et le code strictement nécessaire pour afficher la page d'Accueil. Le code de la page "Contact" (un _chunk_ séparé) ne sera téléchargé à la volée **que** si l'utilisateur décide de cliquer sur le lien "Contact". Mieux pour les gros sites.
 
 **5. La solution : Utiliser un Framework (ex: Next.js)** Pour pallier les défauts de React pur (SEO, lenteur initiale), la documentation officielle recommande un framework comme Next.js ou React Router (v7).
 Next.js introduit le **SSR (Server-Side Rendering)** et les **RSC (React Server Components)**.    
 
 Au lieu d'envoyer un HTML vide, le serveur Next.js exécute lui-même le code React et envoie un fichier HTML rempli de données au navigateur. C'est parfait pour le SEO et l'affichage instantané !
-
+ 
 **1. Comment appelle-t-on ce type de technologie ?** On parle d'une **Architecture orientée composants** (Component-Based Architecture) et d'une approche **Déclarative**.
 
 - **Déclaratif vs Impératif :** En React, on "déclare" à quoi l'interface doit ressembler en fonction de l'état des données (le _State_), et React se charge de mettre à jour le DOM tout seul. (À l'inverse du JavaScript "Vanilla" où l'on doit sélectionner manuellement les éléments avec `document.getElementById` pour les modifier, ce qui est une approche "impérative").
 Vue.js, Angular, Svelte sont des frameworks component based architecture.
 React est utilisé par Meta (créé par React), Netflix, Uber,... Surtout pour la réutilisabilité des composants adapté pour tous les types d'écrans. Uber aussi pour la gestion complexe d'états : react gère bien les changements d'états fréquents.
 
-**2 - Quelle est la différence entre state et props ?** La principale différence réside dans le fait que les props sont des données immuables passées de parent à enfant pour la configuration initiale, tandis que le state est utilisé pour gérer les données internes d'un composant qui peuvent changer au fil du temps et qui déclencheront le rendu du composant lorsque modifiées. Les props sont destinées à la communication entre composants, tandis que le state est destiné à la gestion des données locales d'un composant.
+**2 - Quelle est la différence entre state et props ?** La principale différence réside dans le fait que les props sont des données immuables passées de parent à enfant pour la configuration initiale, tandis que le state est utilisé pour gérer les données internes d'un composant qui peuvent changer au fil du temps et qui déclencheront le rendu du composant lorsque modifiées. Les props sont destinées à la communication entre composants, tandis que le state est destiné à la gestion des données locales d'un composant. En gros les props sont passés par le parent alors que les states sont gérés par l'enfant.
 
 **3 - Décrire le fonctionnement du hook "useEffect" ?**  Il permet de gérer les effets secondaires dans les composants fonctionnels. Les effets secondaires sont des actions qui se produisent en dehors du cycle de vie de rendu normal, comme l'interaction avec des API externes, la modification du DOM, la gestion des abonnements, etc. useEffect vous permet de spécifier des fonctions à exécuter après le rendu ou lors de la mise à jour du composant. Les dépendances peuvent être utilisées pour contrôler quand l'effet doit être réexécuté. La tableau de dépendance (deuxième argument du useEffect) indique quand le hook doit être utilisé. Un tableau vide signifie au chargement du composant, une valeur signifie à son changement, et rien mettre signifie à chaque modification du DOM (à éviter car ralentit bcp la page).
 ### C'est quoi la "gestion des abonnements" ?
@@ -77,7 +74,6 @@ En JavaScript, les opérations réseau (requêtes HTTP) sont des opérations d'*
     
 - **Les Interfaces (TypeScript) :** On type le retour du service avec une `interface` (ex: `Promise<User[]>`). Cela définit un **contrat de données** entre le backend et le frontend. En entretien, expliquez que cela sécurise le code en garantissant que les propriétés manipulées existent réellement sur l'objet reçu après la désérialisation du JSON.
     
-
 #### 2. L'implémentation au sein du `useEffect`
 
 **Pourquoi ne pas déclarer le `useEffect` en `async` ?** La signature de la fonction passée à `useEffect` est stricte : elle doit retourner soit `undefined`, soit une fonction de nettoyage (cleanup function). Une fonction déclarée `async` retourne **systématiquement** une Promesse. Si vous passez une fonction `async` à `useEffect`, React recevra une Promesse au lieu d'une potentielle fonction de nettoyage, ce qui brise le contrat interne du hook et peut générer des comportements imprévisibles.

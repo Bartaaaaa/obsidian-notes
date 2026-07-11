@@ -35,7 +35,7 @@ Symfony Messenger est un composant implémentant le pattern _Message Queuing_. I
 - Traitements multimédias (redimensionnement d'images, encodage vidéo).
 - Appels à des API tierces (synchronisation avec un CRM/ERP, envois de Webhooks).
 
-Les voter tt
+Les voter 
 
 **4 - Expliquer le principe des migrations de Doctrine**
 Les migrations de Doctrine sont un outil puissant permettant de gérer l'évolution de la structure de la base de données dans le cadre d'une application PHP utilisant **Doctrine ORM**. Elles facilitent la création, la modification et la suppression de tables, de colonnes et d'index tout en préservant les données existantes.
@@ -66,7 +66,7 @@ Exemple :
 - **`bind` (Variables globales)** : Permet de lier des variables d'environnement (ex: clés JWT, chemins de dossiers) à des noms de variables précis (ex: `$jwtPrivateKeyPath`). Dès qu'un service demande cette variable dans son constructeur, Symfony l'injecte automatiquement.
 - **`App\` (Déclaration des services)** : Indique à Symfony de transformer toutes les classes du dossier `src/` en services, en **excluant les Entités** (`Entity`), car ce sont de simples objets de données et non des outils.
 - **Configurations manuelles spécifiques** : Utilisées quand la configuration automatique ne suffit pas.
-    - **`CustomLoginLinkAuthenticator`** : On force manuellement l'injection de l'URL du front-end (`$fontendUrl`) et on lui applique un tag de sécurité.
+    - **`CustomLoginLinkAuthenticator`** : On force manuellement l'injection de l'URL du front-end  (`$fontendUrl`) et on lui applique un tag de sécurité.
     - **`EnumNormalizer`** : On lui attribue manuellement un tag avec une **priorité de 100** pour forcer Symfony à l'exécuter avant les autres normaliseurs.
 **Définir des paramètres globaux (`parameters:`) :** Créer des variables constantes réutilisables dans toute ton application ou dans tes templates Twig (ex: l'email de l'administrateur, le nombre d'articles par page, le nom du site).
 
@@ -101,3 +101,5 @@ De plus on peut déclarer les arguments directement dans Services.yml pour centr
 **Elastica (FOSElasticaBundle) : Le moteur de recherche sous stéroïdes**
 FOSElasticaBundle : Permet d'intégrer Elasticsearch à Symfony. Il est utilisé pour la recherche en texte intégral (**full-text search**) sur de gros volumes de données. Il pallie les limites du SQL en gérant nativement la pertinence, la tolérance aux erreurs (**fuzzy matching**) et les agrégations de données pour créer des filtres dynamiques (**facettes**).
  **LexikJWTAuthenticationBundle** : Utilisé pour sécuriser les API REST. Il permet de mettre en place une authentification _stateless_ (sans état) en générant et en validant des tokens JWT
+ 
+ ss
