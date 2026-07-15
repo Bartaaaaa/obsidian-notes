@@ -54,7 +54,61 @@ Les microservices peuvent très bien êtres codés en un langage différents. Po
 **Clean Architecture** 
 
 **Architecture hexagonale** 
+Place le métier au centre (l'hexagone) et l'isole du monde extérieur via des ports (interfaces) et des adapters (implémentations concrètes : BDD, UI, API externes). + le cœur métier ne dépend ni de la BDD ni du framework, facile de changer un adapter (ex: MySQL vers MongoDB) sans toucher au métier, bonne testabilité car on peut mocker les ports. - complexité d'implémentation avec beaucoup d'interfaces et d'abstractions, peut sembler redondant sur un petit projet. 
+**Ports** : Le port est une interface définie par le métier qui exprime un besoin. Il dit ce qu'on peut faire, sans définir comment.
+```javascript
+// Le port dit juste : "j'ai besoin de pouvoir sauvegarder et chercher un user"
+class UserRepositoryPort {
+  save(user) { throw new Error("non implémenté"); }
+  findByEmail(email) { throw new Error("non implémenté"); }
+}
+```
+Deux types de ports : 
+Primaire : ce qui entre dans le métier (controller HTTP, commande)
+Secondaire : Ce que le métier appelle vers l'extérieur (BDD, API Tierce, envoie d'email)
+**Adaptateurs** : L'adaptateur dit comment le faire réellement, sur une techno précise.
+```javascript
+// L'adapter dit : "je le fais avec MongoDB, concrètement"
+class MongoUserRepository extends UserRepositoryPort {
+  async save(user) { await this.collection.insertOne(user); }
+  async findByEmail(email) { return this.collection.findOne({ email }); }
+}
+```
+
+Ex: systèmes avec beaucoup d'intégrations externes comme le paiement ou des API tierces.
+```
+src/
+├── core/
+│   ├── domain/
+│   └── ports/            # Interfaces (ex: UserRepositoryPort)
+├── adapters/
+│   ├── primary/          # Entrée : controllers, CLI
+│   └── secondary/        # Sortie : DB, API externes
+```
+
+![[Pasted image 20260714163343.png]]
+
+Normalement en couches classiques, le sens de dépendance est :
+```
+Controller → Métier → BDD
+```
+En hexagonale, ce sens est inversé pour la BDD :
+```
+Controller → Métier ← BDD (via le port)
+```
+
 
 **Architecture événementielle** (event-driven) : Organise le système autour d'événements émis et consommés par différents composants. Adaptée pour les systèmes IOT et aux apps en temps réels.
 
 **Single Page Application**
+Le front charge une seule page HTML au départ, puis le routing et le rendu se font côté client en JS, sans rechargement de page à chaque navigation. + navigation fluide, expérience proche d'une app native, séparation claire front/back car le front consomme une API. - SEO plus difficile car le contenu est généré en JS, temps de chargement initial plus long car tout le JS est chargé au début. Ex: DMM front, Mires.
+
+```
+public/
+├── index.html        # Un seul point d'entrée HTML
+src/
+├── components/
+├── pages/             # Routing côté client (React Router...)
+├── services/          # Appels API vers le back
+└── App.jsx
+```

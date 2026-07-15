@@ -26,7 +26,7 @@ Mais on a besoin de messenger consumme mon scheduler, à voir coment ça marche
 NODE_ENV=
 Executer les commande avec docker exec
 
-C quoi le DOM
+
 
 **5 - Qu'est-ce que le SSR ? Quels sont les avantages du SSR ?**
 Le SSR, ou Rendu Côté Serveur (Server-Side Rendering) est une technique de rendu
@@ -70,10 +70,6 @@ Put : modifier toute la donnée, PATCH : modifier qu'une partie
 **Les codes retours :** 
 Check : 
 https://tanstack.com/query/latest
-
-
-
-XSS DOM BASED, pentest
 
 **Languge bas niveau :** 
 Proche du langage des composants électroniques. Le plus bas niveau est le binaire, assembleur, C, C++, etc. Il est directement interprété par la machine.

@@ -1,8 +1,8 @@
 **2 - Quelle est la différence entre un Listener et un Subscriber ?**
 La principale différence réside dans le fait qu'un Listener est spécifique à un événement particulier et doit être configuré individuellement pour chaque événement, tandis qu'un Subscriber peut écouter plusieurs événements et est configuré une seule fois pour tous ces événements. Le choix entre les deux dépend de l'architecture de votre application et du niveau d'organisation souhaité pour la gestion des événements.
 **Exemple d'utilisations :** 
-Subscriber : Une classe qui gère la logique d'un domaine complet sur **plusieurs** événements (ex: Un `UserSubscriber` qui écoute la connexion, la déconnexion et la modification de mot de passe). Un exceptionSubscriber qui formate le format de renvoie de réponse pour chaque réponse -> traduire des erreurs brut symfony  qui renvoient une page d'erreur  en un JSON.
-Listener : Une classe qui ne fait qu'**une seule** chose très spécifique sur un seul événement (ex: Un `WelcomeEmailListener` déclenché uniquement à l'inscription).
+**Subscriber** : Une classe qui gère la logique d'un domaine complet sur **plusieurs** événements (ex: Un `UserSubscriber` qui écoute la connexion, la déconnexion et la modification de mot de passe). Un exceptionSubscriber qui formate le format de renvoie de réponse pour chaque réponse -> traduire des erreurs brut symfony  qui renvoient une page d'erreur  en un JSON.
+**Listener** : Une classe qui ne fait qu'**une seule** chose très spécifique sur un seul événement (ex: Un `WelcomeEmailListener` déclenché uniquement à l'inscription).
 
 **3 - A quoi sert Symfony Messenger ?**
 Symfony Messenger est un composant de Symfony qui facilite la mise en œuvre de la
@@ -35,7 +35,19 @@ Symfony Messenger est un composant implémentant le pattern _Message Queuing_. I
 - Traitements multimédias (redimensionnement d'images, encodage vidéo).
 - Appels à des API tierces (synchronisation avec un CRM/ERP, envois de Webhooks).
 
-Les voter 
+**C'est quoi un voter en Symfony ?**
+Un voter est une classe dédiée à la logique d'autorisation : elle décide si un utilisateur a le droit d'exécuter une action ou non.
+Ex : 
+```php
+public function editer(Article $article): Response
+{
+    // Vérifie via le Voter si l'utilisateur peut éditer CET article précis
+    $this->denyAccessUnlessGranted('EDIT', $article);
+    // Si on arrive ici, l'utilisateur a le droit
+}
+```
+Il faut configurer la classe du voter avant avec extends Voter.
+Le but est de garder la logique métier dans un seul endroit et éviter de la dupliquer dans différentes fonctions.
 
 **4 - Expliquer le principe des migrations de Doctrine**
 Les migrations de Doctrine sont un outil puissant permettant de gérer l'évolution de la structure de la base de données dans le cadre d'une application PHP utilisant **Doctrine ORM**. Elles facilitent la création, la modification et la suppression de tables, de colonnes et d'index tout en préservant les données existantes.
@@ -56,7 +68,13 @@ PHPUnit
 **7 - Quel outil peut être utilisé pour débugger ?** 
 XDebug, Zend Debugger 
 **8 - A quoi sert Doctrine ?** 
-Doctrine est une bibliothèque de mapping objet-relationnel (ORM) en PHP. Elle facilite la manipulation et la gestion des données dans une application PHP en permettant de travailler avec des bases de données de manière orientée objet.
+Doctrine est une bibliothèque de mapping objet-relationnel (ORM Object Relationnal Mapper) en PHP. Elle facilite la manipulation et la gestion des données dans une application PHP en permettant de travailler avec des bases de données de manière orientée objet.
+On tape au dessus du champ : 
+@ORM\Column(type="type_champ)
+(On peut par ailleurs préciser dans l'attribut length, unique, name)
+Pour le **NoSQL**, on utilise **ODM (object-docment Mapper)** qui fonctionne de la même manière mais pour du NoSQL.
+Pour ODM on précise 
+/** @MongoDB\Field(type="type_champ") */
 
 **9 - A quoi sert le fichier "services.yaml" ?** 
 Le fichier "services.yaml" est un fichier de configuration utilisé dans le framework Symfony pour définir et configurer les services de votre application. Les services sont des objets ou des composants réutilisables qui effectuent diverses tâches au sein de votre application, tels que la gestion de la base de données, le traitement des formulaires, la gestion de la sécurité, etc. Le fichier "services.yaml" permet de déclarer ces services et de spécifier comment ils doivent être instanciés et configurés.
@@ -102,4 +120,4 @@ De plus on peut déclarer les arguments directement dans Services.yml pour centr
 FOSElasticaBundle : Permet d'intégrer Elasticsearch à Symfony. Il est utilisé pour la recherche en texte intégral (**full-text search**) sur de gros volumes de données. Il pallie les limites du SQL en gérant nativement la pertinence, la tolérance aux erreurs (**fuzzy matching**) et les agrégations de données pour créer des filtres dynamiques (**facettes**).
  **LexikJWTAuthenticationBundle** : Utilisé pour sécuriser les API REST. Il permet de mettre en place une authentification _stateless_ (sans état) en générant et en validant des tokens JWT
  
- ss
+ 

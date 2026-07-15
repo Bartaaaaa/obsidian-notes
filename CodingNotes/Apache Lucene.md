@@ -18,6 +18,6 @@ Un champ est soit "**text**" : champ qui peut prendre toutes les valeurs, comme 
 Soit un champ "**keyword**" (valeurs exactes uniques) : prend la chaine entière sans normalisation. Attention, la recherche sur les champs keywords doit etre exacte. Si le champ est IN_PROGRESS, et l'user tape PROGRESS, pas de résultat ! Un keyword doit tjrs stocker des valeurs uniques (enum, uuid, token).
 
 **Puisque Lucene fait déjà tout ce travail magique, pourquoi a-t-on besoin d'Elasticsearch ?**
-ElasticSearch est un orchestrateyr distribué (cluster manager), une appli serveur qui encapsule Lucene.
+ElasticSearch est un orchestrateur distribué (cluster manager), une appli serveur qui encapsule Lucene.
 **Lucene est une bibliothèque Java, pas un serveur.** Tu ne peux pas lui parler en HTTP/REST, tu ne peux pas le brancher directement sur un réseau, et il ne sait tourner que sur **une seule machine**. Si ton index Lucene devient plus gros que le disque dur de ton serveur, tu es bloqué.
 ElasticSearch est le manager de Lucene : découpe l'index géants en shards, chaque shard est une instance d'Apache Lucene indep. Permet la communication en API REST, coordination des shards.
