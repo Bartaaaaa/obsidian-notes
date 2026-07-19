@@ -59,3 +59,5 @@ Subscription -> Recevoir des mises à jour en temps réel (webSocket)
 
 Utilité : Apps mobiles/front avec besoins de données variables
 ![[Pasted image 20260713180809.png]]
+
+API first
