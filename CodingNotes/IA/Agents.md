@@ -1,11 +1,3 @@
-
-**Tout d'abord, les bases.** Qu'est-ce qu'un agent IA, quels sont les concepts fondamentaux et dans quels cas peut-on l'utiliser ? Nous aborderons également des solutions sans code si vous souhaitez commencer à expérimenter sans écrire une seule ligne de code.
-
-**Ensuite, niveau intermédiaire.** Nous aborderons la conception et l'évaluation de systèmes multi-agents pour résoudre des problèmes concrets. Je ferai une démonstration d'un système multi-agents que j'ai créé et qui me permet actuellement de gagner plusieurs heures de travail par semaine.
-
-**Ensuite, la question est plus avancée.** Que faut-il concrètement pour construire des systèmes d'agents fiables en production ?
-
-
 ### Qu'est-ce qu'un agent ?
 
 Voici la façon la plus simple de l'imaginer. Imaginez que vous deviez rédiger une dissertation. Si vous utilisez un sujet classique de master en droit, vous diriez en gros : « Dis ChatGPT, rédige-moi une dissertation sur comment débuter en salle de sport », et le logiciel écrirait le texte en une seule fois, du début à la fin.
@@ -16,7 +8,7 @@ Mais ce n'est pas comme ça que vous ou moi écririons une dissertation, n'est-c
 
 ![[Pasted image 20260516111051.png]]
 Un workflow d'agent est un process dans lequel un LLM exécutes différentes étapes pour répondre à une tâche.
-C’est ce qu’on appelle la  **ReAct Loop**. Le modèle raisonne sur la prochaine étape, agit (souvent en appelant un outil, dont nous parlerons plus tard), observe le résultat, puis soit fournit une réponse, soit retourne au point de départ pour un nouveau raisonnement.
+C’est ce qu’on appelle la  **ReAct Loop**. Le modèle raisonne sur la prochaine étape, agit (souvent en appelant un outil), observe le résultat, puis soit fournit une réponse, soit retourne au point de départ pour un nouveau raisonnement.
 ![[Pasted image 20260516111340.png]]
 Cela fonctionne car chaque étape apporte de la profondeur. On obtient un raisonnement plus solide, moins d'hallucinations et une meilleure organisation, soit tout ce qui se perd lorsqu'on essaie de tout faire d'un coup.
 Bien sûr, cette spécialisation et cette précision accrues ont un coût en termes de complexité. Dès lors, une question évidente se pose : *pour quels types de tâches justifient réellement la création d’agents ?*
@@ -31,7 +23,7 @@ La plus grande valeur ajoutée provient souvent des tâches complexes, et les pr
 
 ### Spectre d'autonomie
 
-Maintenant que vous savez à quoi servent les agents, voyons comment les constituer. La première grande décision à prendre concerne le degré d'autonomie que vous souhaitez leur accorder. Faut le voir comme un spectre.
+La première grande décision à prendre concerne le degré d'autonomie que vous souhaitez leur accorder. Faut le voir comme un spectre.
 ![[Pasted image 20260516113354.png]]D'un côté, on trouve les agents scriptés où chaque étape est programmée en dur. Par exemple, pour la rédaction d'un essai, cela pourrait consister à générer les termes de recherche, effectuer un moteur de recherche, récupérer les pages, puis rédiger l'essai. C'est tout. C'est déterministe, prévisible et facile à contrôler. Le modèle n'a qu'à générer le texte, car vous avez tout défini.
 
 D'un autre côté, on trouve **des agents hautement autonomes** . Le LLM décide alors s'il doit effectuer une recherche sur Google, des sites d'actualités ou des articles scientifiques. Il détermine le nombre de pages à extraire, s'il faut convertir les PDF et s'il convient de les analyser et de les corriger. Il peut même écrire et exécuter de nouvelles fonctions. Cette approche est plus puissante, mais aussi plus imprévisible et plus difficile à contrôler.
@@ -43,7 +35,6 @@ En pratique, la plupart des agents du monde réel se situent entre les deux et s
 Mais comment un agent peut-il savoir quels outils sont disponibles ou comment prendre des décisions ?
 
 On appelle cela « l'ingénierie du contexte », qui consiste à déterminer les informations dont dispose l'agent. Cela inclut des éléments tels que le contexte de la tâche, le rôle de l'agent, la mémoire de ses actions passées et les outils disponibles.
-
 Si l'on considère l'ensemble de ces éléments, ce contexte oriente un modèle non déterministe vers des résultats cohérents et de haute qualité.
 
 ### Décomposition des tâches

@@ -15,7 +15,6 @@ Idéalement :
 ## **Aliments à éviter :** 
 **RIz blanc :**  Le riz blanc est blanc parce qu’il a été dépouillé de la plupart de ses fibres, nutriments et protéines. Il se digère trop vite et offre une faible sensation de satiété.
 
-
 **Charcuterie** : Chargée en graisses saturées malsaines, et en sel, la charcuterie favorise à la fois la prise de poids, mais aussi la rétention d’eau.
 
 **Glaces :** Les glaces, trop riches en sucre, mais également en lactose, contiennent ce dont il vaut mieux rester éloigné.

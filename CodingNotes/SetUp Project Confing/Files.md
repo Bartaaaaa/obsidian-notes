@@ -1,4 +1,3 @@
-
 Mettre en place un projet requiert souvent les mêmes étapes d'installation. Quelque soit les technologies utilisés, on retrouve souvent les mêmes fichiers.
 
 **Pour les projet en javascript, on retrouve :** 

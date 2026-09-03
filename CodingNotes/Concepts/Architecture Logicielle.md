@@ -96,8 +96,11 @@ En hexagonale, ce sens est inversé pour la BDD :
 ```
 Controller → Métier ← BDD (via le port)
 ```
+« Tout dépend du cœur. » C'est tout. Rien d'autre ne dépend les uns des autres. Une chose n'existe que pour l'une des trois raisons :
 
+a) C'est une partie du cœur b) Elle implémente une interface (au sens large) que le cœur nécessite c) Elle utilise le cœur pour faire son truc.![[Pasted image 20260903091339.png]]
 
+![[Pasted image 20260903091432.png]]
 **Architecture événementielle** (event-driven) : Organise le système autour d'événements émis et consommés par différents composants. Adaptée pour les systèmes IOT et aux apps en temps réels.
 
 **Single Page Application**

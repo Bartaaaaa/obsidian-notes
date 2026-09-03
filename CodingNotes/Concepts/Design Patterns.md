@@ -48,3 +48,46 @@ Le code appelant demande juste "donne-moi un paiement de type X", sans savoir co
 - centralise la logique de création (un seul endroit à modifier si la création change)
 - le code appelant ne dépend pas des classes concrètes, seulement de l'interface `Payment`
 - facile d'ajouter un nouveau type sans toucher au code qui utilise la Factory
+
+```
+// 1. L'interface commune (le contrat)
+interface Payment {
+    process(amount: number): void;
+}
+
+// 2. Les classes concrètes (la logique spécifique)
+class CreditCardPayment implements Payment {
+    process(amount: number): void {
+        console.log(`Paiement de ${amount}€ via Carte Bancaire traité.`);
+    }
+}
+
+// 3. La Factory (le centre de création)
+class PaymentFactory {
+    static createPayment(type: string): Payment {
+        switch (type.toLowerCase()) {
+            case 'credit_card':
+                return new CreditCardPayment();
+            case 'paypal':
+                return new PaypalPayment();
+            default:
+                throw new Error(`Le type de paiement '${type}' n'est pas supporté.`);
+        }
+    }
+}
+
+// --- 4. Le code appelant (Client) ---
+// Le client demande juste "donne-moi un paiement de type X"
+function handleCheckout(paymentType: string, amount: number) {
+    try {
+        // Aucune utilisation de "new" ici, on délègue à la Factory
+        const paymentMethod = PaymentFactory.createPayment(paymentType);
+        
+        // Le client ne connaît que l'interface "Payment" et sa méthode "process"
+        paymentMethod.process(amount); 
+
+}
+
+// Exécution
+handleCheckout('paypal', 150);       // Affiche : Paiement de 150€ via PayPal traité.
+```
