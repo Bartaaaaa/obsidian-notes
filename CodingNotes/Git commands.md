@@ -42,3 +42,5 @@ git checkout <mauvaise-branche>
 git reset --hard HEAD~1
 3. Nettoyer l'ancienne branche sur le serveur distant : 
 git push origin <mauvaise-branche> --force
+
+
