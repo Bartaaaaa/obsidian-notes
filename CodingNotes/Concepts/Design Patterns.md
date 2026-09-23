@@ -91,3 +91,25 @@ function handleCheckout(paymentType: string, amount: number) {
 // Exécution
 handleCheckout('paypal', 150);       // Affiche : Paiement de 150€ via PayPal traité.
 ```
+
+## Builder
+Builder est un design pattern qui a pour but de résoudre le problème du constructeur géant possédant 10 paramètres.
+Le principe est de laisser le constructeur avec les éléments essentiels, et ce qui peut varier on y crée des méthodes dédiées qu'on appelle en fonction du besoin.
+PHP
+On passe de : 
+```
+// Constructeur illisible et source d'erreurs d'ordre de paramètres
+$maison = new House(4, 2, 1, true, false, true, "tuile", null, 2);
+```
+à :
+```
+$builder = new HouseBuilder();
+
+$maison = $builder
+    ->setWalls(4)
+    ->setWindows(2)
+    ->setRoof("tuile")
+    ->hasGarage(true)
+    ->build(); // Renvoie l'objet House final assemblé et validé
+```
+Les méthodes se mettent dans une classe "builder", ainsi on aura la classe House, et la classe HouseBuilder. Le housebuilder construit un objet House dans une de ses méthodes avec les bons params.

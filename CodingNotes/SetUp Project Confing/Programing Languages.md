@@ -21,12 +21,19 @@
 
 **Go** : Langage créé par Google, simple et performant. Très utilisé pour les serveurs backend, les APIs et les outils cloud (Docker et Kubernetes sont écrits en Go).
 
+
+////////////////////
+
+**Node.js** : Environnement d'exécution permettant d'utiliser JavaScript en dehors d'un navigateur. 
+- **Côté serveur :** Créer des backends et des API ultra-performants grâce à son architecture non-bloquante, idéale pour gérer de multiples connexions simultanées (temps réel, tchat, streaming).
+- **Côté front-end (Outillage) :** Servir de moteur pour l'écosystème de développement. Il fait tourner les gestionnaires de paquets (npm, yarn), les serveurs de développement locaux, et s'occupe de compiler les projets (React, Vue) avant leur mise en ligne.
+
 **Frameworks à connaître :** 
-**Node.js** : Framework javascript pour faire du développement côté serveur. Il se démarque par son architecture non-bloquante, très performant pour gérer de nombreuses connexions simultanées (API, temps réel).
 **NestJS** : Framework javascript côté serveur (Node.js). Il se démarque par son architecture très structurée inspirée d'Angular, populaire pour des APIs complexes en entreprise.
 **Angular** : Framework front créé par Google. C'est un framework **"tout-en-un"** qui impose une structure stricte. Contrairement à React qui est une librairie qu'on complète avec d'autres outils, Angular a déjà tout intégré. Utilise **TypeScript par défaut**. 
 **Next.js** : Framework javascript basé sur React, qui permet le rendu côté serveur (SSR) ou la génération de pages statiques. Il se démarque en résolvant le problème de SEO de React. Un projet React utilise tjrs du Next.js
 **Vue.js** : Alternative à React côté front, considéré comme plus **simple à prendre en main** que React ou Angular. Il emprunte le meilleur des deux (composants de React, structure d'Angular). 
+
 **PHP Symfony :** 
 **Spring Boot** : Framework Java qui permet de créer des **microservices et APIs** robustes avec très peu de configuration. C'est le standard dans les très grandes entreprises et les banques qui tournent en Java.
 

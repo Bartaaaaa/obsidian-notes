@@ -56,7 +56,7 @@ React est utilisé par Meta (créé par React), Netflix, Uber,... Surtout pour l
 
 **2 - Quelle est la différence entre state et props ?** La principale différence réside dans le fait que les props sont des données immuables passées de parent à enfant pour la configuration initiale, tandis que le state est utilisé pour gérer les données internes d'un composant qui peuvent changer au fil du temps et qui déclencheront le rendu du composant lorsque modifiées. Les props sont destinées à la communication entre composants, tandis que le state est destiné à la gestion des données locales d'un composant. En gros les props sont passés par le parent alors que les states sont gérés par l'enfant.
 
-**3 - Décrire le fonctionnement du hook "useEffect" ?**  Il permet de gérer les effets secondaires dans les composants fonctionnels. Les effets secondaires sont des actions qui se produisent en dehors du cycle de vie de rendu normal, comme l'interaction avec des API externes, la modification du DOM, la gestion des abonnements, etc. useEffect vous permet de spécifier des fonctions à exécuter après le rendu ou lors de la mise à jour du composant. Les dépendances peuvent être utilisées pour contrôler quand l'effet doit être réexécuté. La tableau de dépendance (deuxième argument du useEffect) indique quand le hook doit être utilisé. Un tableau vide signifie au chargement du composant, une valeur signifie à son changement, et rien mettre signifie à chaque modification du DOM (à éviter car ralentit bcp la page).
+**3 - Décrire le fonctionnement du hook "useEffect" ?**  Il permet de gérer les effets secondaires dans les composants fonctionnels. Les effets secondaires sont des actions qui se produisent en dehors du cycle de vie de rendu normal, comme l'interaction avec des API externes, la modification du DOM, la gestion des abonnements, etc. useEffect vous permet de spécifier des fonctions à exécuter après le rendu ou lors de la mise à jour du composant. La tableau de dépendance (deuxième argument du useEffect) indique quand le hook doit être utilisé. Un tableau vide signifie au chargement du composant, une valeur signifie à son changement, et rien mettre signifie à chaque modification du DOM (à éviter car ralentit bcp la page).
 ### C'est quoi la "gestion des abonnements" ?
 
 Un abonnement (subscription), c'est quand ton composant se met sur écoute pour surveiller un événement qui se passe à l'extérieur.
@@ -67,24 +67,15 @@ Un abonnement (subscription), c'est quand ton composant se met sur écoute pour 
 **💡 Le point bonus pour l'entretien (La fonction de nettoyage) :** Si on s'abonne à quelque chose, il faut absolument **se désabonner** quand le composant disparaît de l'écran (sinon on crée une "fuite de mémoire", le navigateur va ralentir). On fait ça en retournant une fonction à la fin du `useEffect`.
 
 #### 1. Pourquoi le Service est-il asynchrone ?
-
 En JavaScript, les opérations réseau (requêtes HTTP) sont des opérations d'**Entrée/Sortie (I/O) non-bloquantes**.
-
 - **La Promesse (Promise) :** Le service renvoie un objet `Promise`. Il représente un état intermédiaire : l'opération est lancée, mais le résultat n'est pas encore disponible. Cela permet à la boucle d'événements (Event Loop) de continuer à traiter d'autres tâches (comme les animations ou les clics) sans geler l'interface.
-    
 - **Les Interfaces (TypeScript) :** On type le retour du service avec une `interface` (ex: `Promise<User[]>`). Cela définit un **contrat de données** entre le backend et le frontend. En entretien, expliquez que cela sécurise le code en garantissant que les propriétés manipulées existent réellement sur l'objet reçu après la désérialisation du JSON.
-    
 #### 2. L'implémentation au sein du `useEffect`
-
 **Pourquoi ne pas déclarer le `useEffect` en `async` ?** La signature de la fonction passée à `useEffect` est stricte : elle doit retourner soit `undefined`, soit une fonction de nettoyage (cleanup function). Une fonction déclarée `async` retourne **systématiquement** une Promesse. Si vous passez une fonction `async` à `useEffect`, React recevra une Promesse au lieu d'une potentielle fonction de nettoyage, ce qui brise le contrat interne du hook et peut générer des comportements imprévisibles.
 
 **L'utilisation de la fonction interne (Wrapper) :** Pour contourner cette restriction, on déclare une fonction asynchrone **à l'intérieur** du hook.
-
 - **Le mot-clé `await` :** Il suspend l'exécution de cette fonction interne jusqu'à ce que la Promesse du service soit résolue (fulfilled) ou rejetée (rejected). Cela permet d'écrire un code asynchrone qui se lit de manière séquentielle (synchrone), facilitant la lecture et la maintenance.
-    
 - **L'exécution finale :** Déclarer la fonction (`const fetchData = async () => {...}`) ne fait que la stocker en mémoire. Il est impératif de l'appeler immédiatement après sa définition (`fetchData();`) pour déclencher l'exécution réelle de la logique.
-
-
 #### 3. Structure de code standard (Pattern async/await)
 
 ```
@@ -106,7 +97,6 @@ useEffect(() => {
 ```
 
 #### 4. L'alternative : La chaîne de Promesses (`.then()`)
-
 Il n'est pas obligatoire d'utiliser une fonction `async` interne. On peut traiter la Promesse via la méthode `.then()`.
 
 ```
@@ -174,7 +164,7 @@ C'est la référence absolue dans l'écosystème React (via le package `react-i1
 
 **UseIntl** : Un hook (natif de react) qui fait la même chose que 18next mais un peu différemment.
 
-9 - Quel(s) outil(s) permet de gérer les différentes versions de node en local ?
+**9 - Quel(s) outil(s) permet de gérer les différentes versions de node en local ?**
 nvm, volta
-10 - Quel(s) outil(s) permet de gérer les packages d'une application React ?
+**10 - Quel(s) outil(s) permet de gérer les packages d'une application React ?**
 npm, yarn (plus rapide que npm), pnpm (performant npm)

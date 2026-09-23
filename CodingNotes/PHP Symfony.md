@@ -15,7 +15,7 @@ Symfony Messenger est un composant implémentant le pattern _Message Queuing_. I
 **Architecture et flux d'exécution (Les composants clés)**
 
 - **Le Message (DTO) :** Une classe PHP simple (Data Transfer Object) dont le seul rôle est de transporter les données sérialisables nécessaires à l'exécution de la tâche (ex: un ID utilisateur, un chemin de fichier). Il ne contient aucune logique métier.
-- **Le MessageBus (Dispatcher) :** Le service central appelé par l'application (souvent depuis un Controller). Son rôle est de recevoir le Message et de l'acheminer (Routing) vers la bonne destination. Dans un contexte asynchrone, le Bus sérialise le Message et l'envoie vers un **Transport**. (Par ex appelé depuis le controlleur)
+- **Le MessageBus (Dispatcher) :** Le service central appelé par l'application (souvent depuis un Controller). Son rôle est de recevoir le qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq et de l'acheminer (Routing) vers la bonne destination. Dans un contexte asynchrone, le Bus sérialise le Message et l'envoie vers un **Transport**. (Par ex appelé depuis le controlleur)
 - **Le Transport (Message Broker / File d'attente) :** Le système de stockage temporaire. Il retient les messages en file d'attente jusqu'à ce qu'ils soient traités. Ce système peut être la base de données (Doctrine), Redis, RabbitMQ (AMQP), ou Amazon SQS.
 - **Le Worker (Le processus de consommation) :** C'est un élément critique. Il s'agit d'un script en ligne de commande (`php bin/console messenger:consume`) qui **doit tourner en permanence** sur le serveur d'hébergement (souvent maintenu en vie par un gestionnaire de processus comme _Supervisor_ ou _Systemd_). Il scrute (poll) le Transport en continu pour voir si de nouveaux messages sont dans la file d'attente.
 - **Le Handler (La logique métier) :** Une classe taguée avec l'attribut `#[AsMessageHandler]`. Lorsqu'un Worker récupère un Message dans le Transport, il le désérialise et le transmet au Handler correspondant. C'est ici que le code lourd (envoi de mail, traitement) est réellement exécuté.
@@ -108,7 +108,8 @@ Dans PHP 8, les attributs sont une nouvelle fonctionnalité qui permet de décla
 
 **14 - Quels bundles tiers avez-vous utilisé (précisez leur utilité) ?**
 Un bundle est un paquet de code structuré pour s'intégrer à l'architecture Symfony. Son rôle principal est de configurer et d'injecter des bibliothèques externes ou des fonctionnalités spécifiques directement dans le conteneur de services (DIC) de Symfony, généralement via des fichiers YAML. Le besoin fondamental d'un bundle est d'**automatiser l'intégration d'une librairie dans le DIC de Symfony**. Pour instancier les classes de la librairie avec les parametres par exemple.
-Notes : **DIC** (Injection de dépendances dans Symfony). L'injection de dépendances est un mécanisme qui permet d'implémenter le principe de l'inversion de contrôle. L'idée est de créer dynamiquement (_injecter_) les dépendances d'une classe en utilisant une description (un fichier de configuration par exemple). Cette méthode va nous permettre de ne plus exprimer les dépendances entre les composants dans le code de manière statique, mais de les déterminer dynamiquement à l'exécution.
+Notes : **DIC** (Injection de dépendances dans Symfony). 
+La classe déclare son besoin dans le constructeur, elle n'instancie plus la classe. Le DIC s'en gère, qui est un registre global qui connait toutes les classes de l'application et leurs dépendances, et renvoie ainsi l'objet prêt à l'envoie à la classe qui en a besoin.
 Passer de : (plus besoin d'instancier l'objet !).
 ![[Pasted image 20260328114927.png]]![[Pasted image 20260328114942.png]]
 De plus on peut déclarer les arguments directement dans Services.yml pour centraliser les données déclarées (normalement on fait référence au fichier .env donc %env(resolve:adminEmail)%) :
@@ -120,4 +121,29 @@ De plus on peut déclarer les arguments directement dans Services.yml pour centr
 FOSElasticaBundle : Permet d'intégrer Elasticsearch à Symfony. Il est utilisé pour la recherche en texte intégral (**full-text search**) sur de gros volumes de données. Il pallie les limites du SQL en gérant nativement la pertinence, la tolérance aux erreurs (**fuzzy matching**) et les agrégations de données pour créer des filtres dynamiques (**facettes**).
  **LexikJWTAuthenticationBundle** : Utilisé pour sécuriser les API REST. Il permet de mettre en place une authentification _stateless_ (sans état) en générant et en validant des tokens JWT
  
+ **Connaissez vous le framework Prado ?** 
+ Prado est un framework PHP open-source utilisé pour la programmation d'applications Web avec PHP. C'était pionner en 2000 mais aujourd'hui est legacy.
+ Prado = Rapid Application Development Object Oriented.
+ Il a une approche événementielle et par composants. Il fonctionne pas en MVC mais avec un système de pages et de contrôles réutilisables où les intéractions utilisateurs déclenchent des événements côté serveurs.
  
+**Qu'est-ce que API Plateform ?** 
+Framework open source pour construire des API web modernes (Rest ou GraphQL). API Plateform génère automatiquement une API complète à partir des modèles de données.
+**Génération automatique du CRUD** en ajoutant simplement #[ApiResource] sur une entité
+PHP. Génération native d'OpenAPI, pagination automatique, filtres, tri, validation, voters.
+
+```
+namespace App\Entity;
+use ApiPlatform\Metadata\ApiResource;
+
+#[ORM\Entity]
+#[ApiResource] // <--- Cette seule ligne expose l'API complète
+class Product
+{
+    #[ORM\Id, ORM\GeneratedValue, ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column]
+    #[Assert\NotBlank]
+    public string $name;
+}
+```

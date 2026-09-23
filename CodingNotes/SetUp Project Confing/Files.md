@@ -37,7 +37,6 @@ Sans cette séparation, TypeScript mélangerait les deux et ne te préviendrait 
 
 `tsconfig.app.json` dit donc à TypeScript "ce code tourne dans le navigateur" et `tsconfig.node.json` lui dit "ce code tourne dans Node.js". Le `tsconfig.json` racine référence les deux via `"references"` et sert de point d'entrée unifié pour ton éditeur de code. référence les deux via le champ `"references"` et sert de point d'entrée unifié. Ces fichiers sont généras automatiquement quand on fait pnpm create vite en général, tu n'auras pas à y toucher. D'ailleurs ces fichiers contiennent un élément "**include**" qui permet d'indiquer ce qu'ils concernent : Pour tsconfig.app.json ça sera souvent "src", alors que pour node ça sera "vite.config.ts". Au autre champ "lib" qui précise ce qui peut être utilisé (genre le DOM pour app).
 
-
 #### `vite.config.ts`
 Vite est à la fois un serveur de développement et un outil de build.
 En développement, Vite démarre un serveur local très rapide. Sa particularité est de ne pas bundler tout le code au démarrage : il sert les fichiers à la demande en utilisant les ES Modules natifs du navigateur, ce qui rend le démarrage quasi-instantané même sur de gros projets. Il intègre aussi le Hot Module Replacement (**HMR**) qui met à jour uniquement le composant modifié dans le navigateur sans recharger toute la page.

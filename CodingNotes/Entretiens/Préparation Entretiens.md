@@ -4,7 +4,6 @@
 A la rencontre : faire du **small talk** : 
 **Venir avec un cahier et un stylo et des notes déjà prises sur l'entreprise et sur l'interlocuteur** 
 Ex : Ca fait longtemps que vous êtes dans ces locaux, ils sont supers sympas, avec la cour dehors. 
-
  
 Je suis franco polonais, j'ai des origines polonaises mais j'ai grandi à Paris. Si cela vous convient je vais d'abord vous présenter mon cursus universitaire avant d'enchainer sur mes expériences professionnels : 
 
@@ -26,7 +25,6 @@ Situation -> Task -> Acomplishement -> Result
 A la fin : Voici en résumé mon expérience, aujourd'hui ce qui m'intéresse chez Atexo est déjà d'une part les thématiques en communs sur lesquelles j'ai pu travailler, et ce que je cherche aujourd'hui c'est de rejoindre une entreprise qui développe ses propres outils pour mieux les maitriser et aussi j'ai envie de me challenger sur de nouveaux projets, Benoit m'a dit que les projets sont difficiles & complexes, et la meilleure chose à faire pour monter en compétences est de travailler sur ce genre de sujets, c'est pour cela
 
 
-
 ## Questions
 
 ### Réponses à connaitre : 
@@ -46,13 +44,6 @@ A la fin : Voici en résumé mon expérience, aujourd'hui ce qui m'intéresse ch
 - **Salaire de votre ancienne boite ?**
 - **Donnez un exemple de règle métier complexe dans votre précédente expérience ?** -> Sur le site des registres des dessins & modèles de l'Inpi, on peut effectuer différentes actions : des prorogations, inscriptions, renonciations, relevé d'échance, dépot de document officiel. Chaque demande possède son propre workflow, mais sont tous unis sous un même objet Transaction. Certaines demandes requiert un mandataire qui doit remplir des champs en plus selon son type, c'est de la **validation conditionnelle : les règles changent selon le type, s'il s'agit d'une personne physique ou morale, etc.
 
-## Questions IA :
-- **Quelle est votre positionnement face à l'IA ?** -> Le futur des développeurs pour moi et qu'ils vont devenir davantage des ingénieurs. L'ingénieur doit connaitre les outils, les technos, les architectures, les connaissances afin qu'il puisse guider l'IA et non pas l'utiliser bêtement pr cracher du code. L'ingénieur doit questionner l'IA, comme un lead tech qui questionne son développeur. C'est un peu la même relation du moins c'est comme cela que je conçois. Il devra se tenir informé sur les derniers sujets, faire de la veille technologique, tester et moins coder et donc avoir davantage un côté de chef d'équipe.
-- **Savez vous coder sans IA ? Comprenez vous ce qu'elle sort, savez vous l'utiliser ?** -> Principalement oui, l'IA est un accélérateur de productivité mais si on me l'enlève je serai toujours capable de développer des sites web, juste plus lentement. J'utilise l'IA quand je n'arrive pas à effectuer une tâche, pour les taches répétitives  ou pour discuter des choix techniques, et mon but est toujours de comprendre ce qu'elle produit. Je relis toujours ce qu'elle fait car je veux pas créer de la dette technique en produisant du code que je ne maitrise pas.
-- **Comment vérifier ce que l'IA produit ?** Je lis d'abord ce qu'elle a produit, une fois ma revue de code terminée, j'appelle mes skills comme *ponytail* pour qu'une autre IA review le code que la première vient de produire, et si tout me parait correct, j'accepte les changements.
-- **Quels modèles avez vous testé pour le benchmarking des LLM sur le projet caviardage et pourquoi ces modèles là ?** J'ai testé des modèles de mistral d'abord pour utiliser IA souveraine et car le temps d'exécution était très bon, mais la précision n'était pas au rendez vous. Je me suis donc rendu sur le site HuggingFace afin de chercher des modèles pouvant répondre à mon besoin. Vu qu'on devait déployer un modèle on Promise sur nos propres GPU, j'ai pas pu utiliser les modèles les plus performants d'Anthropic, mais j'ai pu trouver ce dont j'avais besoin ie le modèle Qwen2.5 car il répondait aux contraintes de temps et de précision.
-* **Vs avez un fix ou feature a faire qui arrive, comment utilisez vous l’IA pour résoudre ? comment procédez vous ?** Cela dépend du bug/feature. Si c'est rapide je préfère le faire moi même, si c'est une tâche que j'ai déjà effectué récemment je laisse l'IA gérer, tout en repassant derrière. Si c'est une grosse evol je planifie mes tâches, je discute éventuellement avec l'IA de mon implémentation et je passe au développements en m'aidant de l'IA si besoin.
-
 
 **Pourquoi aimez vous ce métier ?**
 J'aime ce métier car la courbe d'apprentissage est infinie. Il y a constamment des choses à découvrir, que ce soit de nouvelles librairies, des dépôts ou des technologies. L'évolution ne s'arrête jamais, ce qui empêche toute routine de s'installer. J'apprécie également le fait de pouvoir concevoir un produit de toutes pièces : ce n'est pas donné à tous les métiers d'avoir la chance de véritablement créer quelque chose puis de pouvoir le tester. Enfin, tout ce qui touche à l'informatique et à la robotique me passionne, et j'aime profondément comprendre comment fonctionnent les choses.
@@ -61,6 +52,7 @@ J'aime ce métier car la courbe d'apprentissage est infinie. Il y a constamment 
 Le projet le plus complexe sur lequel j'ai eu à travailler est Caviardage, une application développée pour l'INPI. Il s'agissait d'un outil permettant de caviarder automatiquement les données sensibles au sein de documents.
 
 La difficulté majeure résidait d'une part dans les exigences du client, qui demandait un traitement rapide à l'exécution tout en maintenant une excellente précision, et d'autre part dans l'intégration et l'orchestration des différents outils d'IA : l'utilisation d'un OCR pour la reconnaissance optique de texte, le benchmarking et l'emploi de LLM pour la détection des données sensibles, l'exploitation d'un GPU pour simuler de hauts débits, l'application du caviardage ainsi que la validation rigoureuse de la précision et de la cohérence globale de l'outil.
+
 **Avez vous déjà développé en utilisant l'IA ? Si oui, parlez moi de ce projet.**
 J'utilise de plus en plus l'IA dans mon quotidien de développeur. Elle me permet d'automatiser les tâches répétitives et de débloquer certaines difficultés techniques.
 
@@ -78,25 +70,63 @@ Pour moi on peut parler de succès dans l’équipe d’abord quand le projet es
 **Comment gérez-vous les conflits sur le lieu de travail ?**
 Je sépare les personnes qui causent le conflit, j’essaye de comprendre la version de chacun et de résoudre le conflit en parlant à chacune des deux personnes.
 
-
-
  **Pouvez-vous donner un exemple de la façon dont vous vous êtes adapté à un changement majeur au travail ?**
 Prepa première année : excellent prof , deuxième année : l’un des pires profs de maths de prepa -> j’ai dû m’adapter : acheté un livre de maths prepa, je venais en cours mais je travaillais de mon côté, j’essayais des fois de forcer le prof à nous faire des exercices sur le thème des chapitres étudiés
 
 **Comment gérez-vous le stress et les délais serrés dans un projet ?**
 Je découpe et priorise les tâches : les plus importantes au début et les - importantes après? Si je bloque j’hésite pas à demander de l’aide surtout en période de rush
 
+## Questions IA :
+- **Quelle est votre positionnement face à l'IA ?** -> Le futur des développeurs pour moi et qu'ils vont devenir davantage des ingénieurs. L'ingénieur doit connaitre les outils, les technos, les architectures, les connaissances afin qu'il puisse guider l'IA et non pas l'utiliser bêtement pr cracher du code. L'ingénieur doit questionner l'IA, comme un lead tech qui questionne son développeur. C'est un peu la même relation du moins c'est comme cela que je conçois. Il devra se tenir informé sur les derniers sujets, faire de la veille technologique, tester et moins coder et donc avoir davantage un côté de chef d'équipe.
+- **Savez vous coder sans IA ? Comprenez vous ce qu'elle sort, savez vous l'utiliser ?** -> Principalement oui, l'IA est un accélérateur de productivité mais si on me l'enlève je serai toujours capable de développer des sites web, juste plus lentement. J'utilise l'IA quand je n'arrive pas à effectuer une tâche, pour les taches répétitives  ou pour discuter des choix techniques, et mon but est toujours de comprendre ce qu'elle produit. Je relis toujours ce qu'elle fait car je veux pas créer de la dette technique en produisant du code que je ne maitrise pas.
+- **Comment vérifier ce que l'IA produit ?** Je lis d'abord ce qu'elle a produit, une fois ma revue de code terminée, j'appelle mes skills comme *ponytail* pour qu'une autre IA review le code que la première vient de produire, et si tout me parait correct, j'accepte les changements.
+- **Quels modèles avez vous testé pour le benchmarking des LLM sur le projet caviardage et pourquoi ces modèles là ?** J'ai testé des modèles de mistral d'abord pour utiliser IA souveraine et car le temps d'exécution était très bon, mais la précision n'était pas au rendez vous. Je me suis donc rendu sur le site HuggingFace afin de chercher des modèles pouvant répondre à mon besoin. Vu qu'on devait déployer un modèle on Promise sur nos propres GPU, j'ai pas pu utiliser les modèles les plus performants d'Anthropic, mais j'ai pu trouver ce dont j'avais besoin ie le modèle Qwen2.5 car il répondait aux contraintes de temps et de précision.
+* **Vs avez un fix ou feature a faire qui arrive, comment utilisez vous l’IA pour résoudre ? comment procédez vous ?** Cela dépend du bug/feature. Si c'est rapide je préfère le faire moi même, si c'est une tâche que j'ai déjà effectué récemment je laisse l'IA gérer, tout en repassant derrière. Si c'est une grosse evol je planifie mes tâches, je discute éventuellement avec l'IA de mon implémentation et je passe au développements en m'aidant de l'IA si besoin.
+
+
+## Questions techniques 
+
 **Questions codes :** 
-C'est quoi une interface ? Quelle diff avec une classe abstraite ?
-Diff entre == et ===
-C'est quoi les Exceptions ? Comment les écries ?
-C'est quoi une API REST ?
-Comment sécuriser une API ?
-C'est quoi l'injection de dépendance ?
-Comment empêcher une requête/appel d'introduire des données négatives en BDD, duplicité, etc tout ce qui respecte pas les règles ACID ?
-Quelle diff entre les attributs de PHP 8 et l'ancienne version 7.
+**C'est quoi une interface ?**
+Une interface est un contrat de comportement. Une interface ne peut avoir d'état, n'a pas de constructeur, et peut hériter d'autres interfaces. Une interface peut uniquement définir des constantes et méthodes. Elle peut définir des constantes mais qui ne sont pas modifiables, et les méthodes sont des signatures (juste déclarés sans le code implémenté), elle ne peut posséder d'attributs. **Ce que l'objet sait faire** : Un document et une facture sont imprimables
 
+**Quelle diff avec une classe abstraite ?**
+Une classe abstraite est une classe qui ne peut être instanciée. Elle joue généralement de modèle de base pour les classes qui vont y hériter. Elle peut définir des méthodes  (code partagé  pour ses sous classes) ainsi que des valeurs pour ses attributs, ainsi qu'un constructeur.  **Ce que l'objet est :** Ex : un chien est un Animal.  **Une classe peut implémenter une interface**
 
+**Diff entre == et === ?** 
+Le premier vérifie l'égalité, le deuxième le type en plus.
+
+**C'est quoi les Exceptions ? Comment les écrire ?**
+Une exception est un objet qui représente une situation anormale ou bloquante survenant lors de l'exécution. Elle interrompt le flux normal du programme et propage l'erreur. Elle se lève avec le mot clé throw et se gère via un bloc try/catch/finally. 
+
+**Comment sécuriser une API ?**
+Pour sécuriser une API il faut mettre en place différents systèmes: 
+Tout d'abord : Configuration stricte des en tete **CORS** pour n'autoriser que les domaines front-end légitimes à appeler l'API depuis un navigateur.  Autoriser uniquement les utilisateurs authentifié **(token jwt)** d'accéder aux appels. Mettre en place une limite d'appelle à la minute pour la protection contre les bots. Mettre un DTO en place pour accepter que les valeurs entrantes bien formatées. Chiffrement du transport **HTTPS/TLS** obligatoire pour qu'aucune donnée ne circule librement sur le réseau. Echappement des requêtes pour éviter les injections SQL.
+
+**C'est quoi l'injection de dépendance ?**
+L'injection de dépendance permet de passer les services dont une classe a besoin dans son constructeur, sans avoir a l'instancier. En injectant des interfaces, le code métier reste agnostique de l'implémentation concrète. C'est le DIC qui prend en charge l'instanciation et le câblage de l'application. Utile aussi pour les tests puisqu'on peut remplacer les dépendances par des mocks.
+
+**Comment empêcher une requête/appel d'introduire des données négatives en BDD, duplicité, etc tout ce qui respecte pas les règles ACID ?**
+Respect des règles **ACID**, Atomicité, cohérence, isolation durabilité
+**Atomicité** : Tout ou rien : Encapsule la transaction, si une requête échoue, tout échoue.
+**Cohérence** : Empêcher les doublons (contraintes d'unicités explicites), empêcher les valeurs invalides (check)
+**Isolation** : Empecher deux requetes simultanées de modifier la meme données en meme temps
+Durabilité : Une fois la transaction passée, les données sont sauvegardées de manière **persistante**
+Pour les appels d'API sensibles (paiements etc) imposer une clé d'idempotence stockée temporairement : si le client renvoie la meme requete deux fois par erreur, la seconde est ignorée.
+**Quelle diff entre les attributs de PHP 8 et l'ancienne version 7 ?**
+Php 8 a introduit les attributs natifs structurés au lieu du système de commentaire bricolé. Imposant ainsi aussi une meilleure sécurité car les erreurs de syntaxe sont apparentes.
+
+**C 'est quoi les principes SOLID ?**
+5 principes pour la programmations orientées objets. 
+S : Sigle Responsability -> Une classe doit avoir qu'une seule tâche à remplir
+O : Open/Closed Principle -> Une entité doit etre ouverte a l'extension mais fermée à la modification.
+L : Liskov Substitution Principle : Les classes enfants doivent pouvoir remplacer les classes parents sans altérer le bon fonctionnement du programme
+I : Interface Segregation Principle -> Mieux vaut des petites interfaces spécifiques qu'une seule grande interface générale.
+D : Depedency Inversion Principle -> Les modules de haut niveau ne doivent pas dépendre des modules de bas niveau
+SQL vs NoSQL ? 
+
+**Etude de cas :**
+ Étude de cas : une caméra est installée à l'entrée d'un restaurant. Concevez un système permettant de compter le nombre d'hommes portant une cravate qui entrent dans le restaurant. Décrivez l'architecture, les modèles utilisés et la manière d'éviter les doubles comptages.
 ### Questions à poser : 
 Des questions sur le processus de recrutement, le nom prenom de la personne avec qui je vais faire le prochain entretien
 Question finale: Si je devais commencer à travailler avec vous dans les prochains mois, quelles seraient mes prochaines taches.

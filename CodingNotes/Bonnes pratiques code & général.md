@@ -1,10 +1,6 @@
-**Global exception filter :** 
-Goblab Interceptor : 
-
+**Goblab Interceptor :** 
 **Request Id Interceptor :**
 Rajouter un id unique à chaque requete pour les retrouver rapidement
-
-Les modules
 
 Une méthode statique (`@staticmethod`) est une méthode qui n'est liée ni à une instance spécifique, ni à la classe elle-même. Elle se comporte comme une fonction classique, mais est **encapsulée** dans la classe pour garder le code cohérent (namespace). Elle est principalement utilisée pour des opérations sans état (**stateless**) ou des helpers internes. Je dirai que lorsqu'une méthode n'a pas besoin du "self" ou appeler "this" on peut la rendre statique.
 
@@ -31,7 +27,7 @@ Executer les commande avec docker exec
 **5 - Qu'est-ce que le SSR ? Quels sont les avantages du SSR ?**
 Le SSR, ou Rendu Côté Serveur (Server-Side Rendering) est une technique de rendu
 d'applications web où le contenu de la page est généré sur le serveur avant d'être envoyé
-au navigateur de l'utilisateur. Dans une application SSR, le serveur génère le HTML completde la page, y compris le contenu, le style, et les scripts, puis l'envoie au client. Le navigateur
+au navigateur de l'utilisateur. Dans une application SSR, le serveur génère le HTML complet de la page, y compris le contenu, le style, et les scripts, puis l'envoie au client. Le navigateur
 reçoit ensuite cette page HTML déjà rendue et peut l'afficher immédiatement.
 Quelques avantages :
 - **Meilleures performances initiales :** L'utilisateur voit la page tout de suite (le HTML est prêt à l'emploi) sans attendre le téléchargement et l'exécution du JavaScript.
@@ -62,7 +58,7 @@ SELECT * FROM users WHERE email LIKE 'jean.%';
 SELECT * FROM users WHERE first_name = 'Jean' AND last_name = 'Dupont';
 ```
 Pour le deuxieme : _Problème :_ Le caractère générique `%` placé au début de la chaîne empêche l'utilisation de l'index. **Un index textuel se lit de gauche à droite** (comme un dictionnaire). Si la première lettre est inconnue, le moteur doit scanner toute la colonne. Alors que s'il est à la fin, il détecte directe par rapport aux premiers éléments.
-- Utilisation de LIMIT pour ne pas renvoyer toutes les données inutillement
+- Utilisation de LIMIT pour ne pas renvoyer toutes les données inutilement
 
 **Différence PUT & PATCH :** 
 Put : modifier toute la donnée, PATCH : modifier qu'une partie

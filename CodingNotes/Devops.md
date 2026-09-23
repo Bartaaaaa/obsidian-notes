@@ -1,5 +1,3 @@
-
-
 Si Kubernetes est le "moteur" qui gère tes applications, **Lens est le tableau de bord (dashboard)** qui te permet de piloter ce moteur sans avoir à taper des lignes de commande complexes en permanence.
 En effet, Kubernetes fonctionne normalement via un terminal, puissant mais pas visuel. Le rôle de Lens est d'offrir une interface graphique sur les pods, services et le réseau. Mais aussi au troubleshooting (dépannage) en permettant un accès aux logs et au terminal, on peut aussi centraliser les serveurs sur Lens, surveiller des metrics etc.
 
@@ -16,7 +14,7 @@ Il joue le rôle de Reverse Proxy :
 Un proxy est un serveur relais qui va intercepter les requetes des utilisateurs d'un réseau privé afin de filtrer les sites interdits, cacher l'adresse IP des employés.
 Reverse Proxy a pour rôle d'intercepter les requetes entrantes pour les distribuer au serveur interne. Cela permet de protéger l'application puisque l'adresse IP du serveur n'est pas exposé et d'organiser le flux entrant des requêtes pour les distribuer aux bons services (front, back, paiement, etc).
 
-**Sécurité SSL/TSL :** sont des protocoles qui chiffrent les échangent entre le navigateur et le serveur (chiffrer les données envoyés dans les requêtes). Nginx on parle de terminateur SSL car il recoit les paquets chiffrés du client, les déchiffre et les envoie au serveur d'application. De plus il force le port HTTPS au lieu du HTTP qui n'est pas sécurisé.
+**Sécurité SSL/TSL :** sont des protocoles qui chiffrent les échange entre le navigateur et le serveur (chiffrer les données envoyés dans les requêtes). Nginx on parle de terminateur SSL car il recoit les paquets chiffrés du client, les déchiffre et les envoie au serveur d'application. De plus il force le port HTTPS au lieu du HTTP qui n'est pas sécurisé.
 
 Il joue aussi le role du Terminateur SSL/TSL & Reserve Proxy, gestionnaire de protocoles HTTPS
 Contrairement au **serveur d'application** qui exécute le code et traite la logique, bdd, ...). Dans une architecture moderne (comme la vôtre avec Docker), il ne se contente pas de servir des fichiers ; il sert de **porte d'entrée unique** pour toutes les requêtes arrivant sur votre projet.
