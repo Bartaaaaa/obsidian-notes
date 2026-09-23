@@ -1,0 +1,306 @@
+{
+  "main": {
+    "id": "3673a2cba8a0ec44",
+    "type": "split",
+    "children": [
+      {
+        "id": "30b5cfc5a5ba9789",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f5951b2826aa2440",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "obsidian-notes/CodingNotes/PHP Symfony.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PHP Symfony"
+            }
+          },
+          {
+            "id": "3d253d391f54e4b4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "obsidian-notes/CodingNotes/SetUp Project Confing/Files.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "d5b089ac545ceda6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "obsidian-notes/CodingNotes/React.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "React"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "92bb8559ab242ad8",
+    "type": "split",
+    "children": [
+      {
+        "id": "6e670e8714aa4ce5",
+        "type": "tabs",
+        "dimension": 70.33747779751332,
+        "children": [
+          {
+            "id": "afa28cf4e6ea17ab",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorateur de fichiers"
+            }
+          },
+          {
+            "id": "cd77a298e25692bd",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#Questions",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Rechercher"
+            }
+          },
+          {
+            "id": "191dca00c2d9592b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Signets"
+            }
+          }
+        ]
+      },
+      {
+        "id": "3ee98067e894daa1",
+        "type": "tabs",
+        "dimension": 29.66252220248668,
+        "children": [
+          {
+            "id": "909dadea7c9ce551",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Vue graphique"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e2e85ac3274cfefb",
+    "type": "split",
+    "children": [
+      {
+        "id": "a5d1e87571aba68a",
+        "type": "tabs",
+        "dimension": 66.18150684931507,
+        "children": [
+          {
+            "id": "d21da2a255ef369d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "obsidian-notes/CodingNotes/Monitoring/Kibana.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Kibana"
+            }
+          },
+          {
+            "id": "1b168b95900acddb",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "obsidian-notes/CodingNotes/React.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": false
+              },
+              "icon": "links-going-out",
+              "title": "Liens sortants de React"
+            }
+          },
+          {
+            "id": "dfc0f2b73a719541",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "953792f4440bfc9e",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Toutes les propriétés"
+            }
+          },
+          {
+            "id": "bc6fedd60c02bd08",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "obsidian-notes/CodingNotes/Monitoring/Kibana.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Kibana"
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "172d9035bebd0692",
+        "type": "tabs",
+        "dimension": 33.81849315068493,
+        "children": [
+          {
+            "id": "38417aa77fff1ecd",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Ouvrir le sélecteur rapide": false,
+      "graph:Ouvrir la vue graphique": false,
+      "canvas:Créer une nouvelle toile": false,
+      "daily-notes:Ouvrir la note quotidienne": false,
+      "templates:Insérer le modèle": false,
+      "command-palette:Ouvrir la palette de commandes": false,
+      "bases:Créer une nouvelle base": false,
+      "obsidian-git:Open Git source control": false,
+      "omnisearch:Omnisearch": false
+    }
+  },
+  "active": "3d253d391f54e4b4",
+  "lastOpenFiles": [
+    "obsidian-notes/CodingNotes/React.md",
+    "obsidian-notes/CodingNotes/Hébérgement/Devops.md",
+    "obsidian-notes/CodingNotes/Hébérgement/Ansible.md",
+    "obsidian-notes/CodingNotes/Hébérgement",
+    "obsidian-notes/CodingNotes/Concepts/Design Patterns.md",
+    "obsidian-notes/HealthNotes/Définitions.md",
+    "obsidian-notes/HealthNotes/Aliments statistiques.md",
+    "obsidian-notes/README.md",
+    "obsidian-notes/CodingNotes/Concepts/Pentest.md",
+    "obsidian-notes/CodingNotes/Concepts/Web components.md",
+    "obsidian-notes/CodingNotes/Concepts/Architecture Logicielle.md",
+    "obsidian-notes/CodingNotes/Concepts/Comment un PC marche _.md",
+    "obsidian-notes/CodingNotes/Concepts/DOM.md",
+    "obsidian-notes/CodingNotes/Concepts/Protocole d'API.md",
+    "obsidian-notes/CodingNotes/VueJS.md",
+    "obsidian-notes/CodingNotes/Suite ELK.md",
+    "obsidian-notes/CodingNotes/PHP Symfony.md",
+    "obsidian-notes/CodingNotes/Git commands.md",
+    "obsidian-notes/CodingNotes/Mongo.md",
+    "obsidian-notes/CodingNotes/Docker.md",
+    "obsidian-notes/CodingNotes/DataBase.md",
+    "obsidian-notes/CodingNotes/Bonnes pratiques code & général.md",
+    "obsidian-notes/CodingNotes/Apache Lucene.md",
+    "obsidian-notes/CodingNotes/Monitoring/Test de charge (caviardage).md",
+    "obsidian-notes/CodingNotes/Monitoring/Grafana.md",
+    "obsidian-notes/CodingNotes/Monitoring/Prometheus.md",
+    "obsidian-notes/CodingNotes/IA/IA Terms.md",
+    "obsidian-notes/CodingNotes/_assets/Pasted image 20260907175347.png",
+    "obsidian-notes/CodingNotes/_assets/Pasted image 20260903091432.png",
+    "obsidian-notes/CodingNotes/_assets/Pasted image 20260903091339.png",
+    "obsidian-notes/CodingNotes/_assets/Pasted image 20260903091326.png",
+    "obsidian-notes/CodingNotes/Entretiens",
+    "obsidian-notes/CodingNotes/_assets/Pasted image 20260714163343.png",
+    "obsidian-notes/CodingNotes/_assets/Pasted image 20260713180809.png",
+    "obsidian-notes/CodingNotes/_assets/Pasted image 20260712214541.png",
+    "obsidian-notes/CodingNotes/_assets/Pasted image 20260711155108.png",
+    "obsidian-notes/CodingNotes/Concepts/Sans titre",
+    "obsidian-notes/CodingNotes/_assets/Pasted image 20260707184714.png",
+    "obsidian-notes/CodingNotes/_assets/Pasted image 20260707182911.png",
+    "obsidian-notes/CodingNotes/Technologies",
+    "obsidian-notes/HealthNotes",
+    "obsidian-notes/CodingNotes/_assets/Untitled",
+    "obsidian-notes/CodingNotes/IA",
+    "obsidian-notes/CodingNotes/Concepts",
+    "obsidian-notes/CodingNotes/SetUp Project Confing",
+    "obsidian-notes/CodingNotes/Untitled.canvas",
+    "obsidian-notes/CodingNotes/_assets"
+  ]
+}
