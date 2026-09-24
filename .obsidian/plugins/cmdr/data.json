@@ -1,6 +1,6 @@
 {
   "confirmDeletion": true,
-  "showAddCommand": false,
+  "showAddCommand": true,
   "debug": false,
   "editorMenu": [],
   "fileMenu": [],
@@ -24,14 +24,11 @@
   ],
   "macros": [],
   "explorer": [],
-  "textToolbarCommands": [],
   "hide": {
     "statusbar": [],
-    "leftRibbon": [],
-    "editorMenuItems": [],
-    "fileMenuItems": []
+    "leftRibbon": []
   },
-  "spacing": 0,
+  "spacing": 8,
   "advancedToolbar": {
     "rowHeight": 48,
     "rowCount": 1,
@@ -41,6 +38,5 @@
     "mappedIcons": [],
     "tooltips": false,
     "heightOffset": 0
-  },
-  "spacingReset": true
+  }
 }

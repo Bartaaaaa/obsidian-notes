@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CodingNotes/Git commands.md",
+                "file": "CodingNotes/React.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Git commands"
+              "title": "React"
             }
           }
         ]
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CodingNotes/Git commands.md",
+                "file": "CodingNotes/React.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CodingNotes/Git commands.md",
+                "file": "CodingNotes/React.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CodingNotes/Git commands.md",
+                "file": "CodingNotes/React.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -192,10 +192,28 @@
   },
   "active": "363b9e288d3350ab",
   "lastOpenFiles": [
+    "workspace.json",
+    "themes/Blue Topaz/theme.css",
+    "themes/Blue Topaz/manifest.json",
+    "themes/AnuPpuccin/theme.css",
+    "themes/AnuPpuccin/manifest.json",
+    "themes/Blue Topaz",
+    "themes/AnuPpuccin",
+    "themes",
+    "snippets/graphview-image.css",
+    "snippets",
+    "plugins/omnisearch/styles.css",
+    "CodingNotes/_assets/Pasted image 20260907175347.png",
+    "CodingNotes/VueJS.md",
+    "CodingNotes/Concepts/Web components.md",
+    "CodingNotes/PHP Symfony.md",
+    "CodingNotes/Mongo.md",
+    "CodingNotes/Git commands.md",
+    "CodingNotes/Docker.md",
+    "CodingNotes/DataBase.md",
+    "CodingNotes/Bonnes pratiques code & général.md",
     "CodingNotes/Hébérgement/Ansible.md",
     "CodingNotes/Hébérgement/Devops.md",
-    "CodingNotes/Monitoring/Grafana.md",
-    "CodingNotes/Hébérgement",
-    "Atexo"
+    "CodingNotes/Monitoring/Grafana.md"
   ]
 }

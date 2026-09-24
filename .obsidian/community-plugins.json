@@ -1,5 +1,12 @@
 [
   "obsidian-git",
+  "calendar",
+  "obsidian-style-settings",
+  "obsidian-icon-folder",
+  "file-explorer-note-count",
+  "ninja-cursor",
   "omnisearch",
-  "cmdr"
+  "cmdr",
+  "code-styler",
+  "click-clack"
 ]
