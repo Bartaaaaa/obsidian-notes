@@ -3,7 +3,7 @@
 
 L'architecture logicielle a un impact important sur la **maintenabilité** du projet, la **scalabilité** (un monolithe bien structuré peut évoluer vers des microservices si nécessaire), la **testabilité**, **performances**, **sécurité**, **coûts**...
 
-**L'architecture monolithique** regroupe toutes les fonctionnalités dans une seule application déployable. Simple à déployer, peut devenir complexe à maintenir. C'était le choix historique sur les applications & sites mais aujourd'hui on utilise davantage une architecture en microservices.
+**L'architecture monolithique** regroupe toutes les fonctionnalités dans une seule application déployable. Simple à déployer, peut devenir complexe à maintenir. C'était le choix historique sur les applications & sites. Les microservices sont devenus très populaires, mais le monolithe reste **le choix par défaut** de la majorité des projets : la tendance aujourd'hui c'est plutôt le **monolithe modulaire** (un seul déploiement, mais du code bien découpé par domaine), et on passe aux microservices seulement quand on en a vraiment besoin (grosse équipe, besoin de scaler une partie précise…). Beaucoup d'entreprises sont même revenues des microservices vers le monolithe car c'était trop complexe pour leur taille.
 
 **+** développement simple, déploiement simple (1 seul dossier), débogage facile, sécurité car un système fermé
 **-** difficile à faire évoluer, à adapter
@@ -24,9 +24,10 @@ mon-projet-ecommerce/
 ├── bdd_schema.sql      # Un seul schéma pour la seule et unique base de données
 └── server.js           # Un seul point d'entrée qui lance toute l'application (ex: port 8080)
 ```
-**Si un conteneur contient tout le code, c'est du monolithique**
+**Si tout le code est déployé d'un seul bloc, c'est du monolithique**
+Le critère c'est pas le nombre de conteneurs, c'est **l'unité de déploiement** : un monolithe peut tourner dans 10 conteneurs identiques (des copies pr encaisser plus de trafic), ça reste un monolithe car on déploie toujours tout en même temps. À l'inverse, en microservices, chaque service se déploie **indépendamment** des autres, avec son propre code et souvent sa propre BDD.
 
-**L'architecture en microservices** décompose l'application en services indépendants, chacun responsable d'une fonctionnalité indépendantes. Les services communiques via des [[Protocole d'API]]. Cette architecture offre une scalabilité et une indépendance maximale, au prix d'une complexité un peu plus grande.
+**L'architecture en microservices** décompose l'application en services indépendants, chacun responsable d'une fonctionnalité indépendantes. Les services communiques via des [[Protocole d'API]]. Cette architecture offre une scalabilité et une indépendance maximale, au prix d'une complexité **beaucoup** plus grande : réseau entre les services (latence, pannes), données réparties dans plusieurs BDD (plus de transactions simples entre services), monitoring et logs à centraliser, déploiement de dizaines de services… C'est pour ça qu'on dit souvent "ne commence pas par les microservices".
 
 **+** facile à faire évoluer, conçue pr l'automatisation CI/CD, opération indépendante entre les services
 **-** tests plus complexes (quand un service a besoin d'un autre), sécurité car communication entre les services, latence, couts quand plus de services
@@ -64,8 +65,9 @@ class UserRepositoryPort {
 }
 ```
 Deux types de ports : 
-Primaire : ce qui entre dans le métier (controller HTTP, commande)
-Secondaire : Ce que le métier appelle vers l'extérieur (BDD, API Tierce, envoie d'email)
+Primaire (ou port d'entrée) : ce que le métier **propose** au monde extérieur, ex : une interface `CreateUserUseCase`. Les **adapters primaires** sont ceux qui l'appellent : controller HTTP, commande CLI, consumer de messages.
+Secondaire (ou port de sortie) : ce dont le métier **a besoin** à l'extérieur, ex : `UserRepositoryPort`, `MailerPort`. Les **adapters secondaires** l'implémentent : BDD, API tierce, envoi d'email.
+Donc attention : le controller HTTP n'est pas un port, c'est un **adapter** primaire qui utilise un port primaire.
 **Adaptateurs** : L'adaptateur dit comment le faire réellement, sur une techno précise.
 ```javascript
 // L'adapter dit : "je le fais avec MongoDB, concrètement"

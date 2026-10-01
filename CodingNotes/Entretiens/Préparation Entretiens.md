@@ -12,7 +12,8 @@ J'ai effectué un BAC S, en filière science industrielle de l'ingénieur, avant
 
 **Expériences pros :** 
 Structure : 
-Situation -> Task -> Acomplishement -> Result
+Méthode **STAR** : Situation -> Task -> Action -> Result
+(Situation = le contexte, Task = ce qu'on attendait de moi, Action = ce que **moi** j'ai fait concrètement, Result = le résultat, chiffré si possible)
 - J'ai taffé dans la boite en tant que x
 - Mes plus grosses taches étaient de réaliser Y
 - Projet était un succes car il a rapporté Y
@@ -80,7 +81,7 @@ Je découpe et priorise les tâches : les plus importantes au début et les - im
 - **Quelle est votre positionnement face à l'IA ?** -> Le futur des développeurs pour moi et qu'ils vont devenir davantage des ingénieurs. L'ingénieur doit connaitre les outils, les technos, les architectures, les connaissances afin qu'il puisse guider l'IA et non pas l'utiliser bêtement pr cracher du code. L'ingénieur doit questionner l'IA, comme un lead tech qui questionne son développeur. C'est un peu la même relation du moins c'est comme cela que je conçois. Il devra se tenir informé sur les derniers sujets, faire de la veille technologique, tester et moins coder et donc avoir davantage un côté de chef d'équipe.
 - **Savez vous coder sans IA ? Comprenez vous ce qu'elle sort, savez vous l'utiliser ?** -> Principalement oui, l'IA est un accélérateur de productivité mais si on me l'enlève je serai toujours capable de développer des sites web, juste plus lentement. J'utilise l'IA quand je n'arrive pas à effectuer une tâche, pour les taches répétitives  ou pour discuter des choix techniques, et mon but est toujours de comprendre ce qu'elle produit. Je relis toujours ce qu'elle fait car je veux pas créer de la dette technique en produisant du code que je ne maitrise pas.
 - **Comment vérifier ce que l'IA produit ?** Je lis d'abord ce qu'elle a produit, une fois ma revue de code terminée, j'appelle mes skills comme *ponytail* pour qu'une autre IA review le code que la première vient de produire, et si tout me parait correct, j'accepte les changements.
-- **Quels modèles avez vous testé pour le benchmarking des LLM sur le projet caviardage et pourquoi ces modèles là ?** J'ai testé des modèles de mistral d'abord pour utiliser IA souveraine et car le temps d'exécution était très bon, mais la précision n'était pas au rendez vous. Je me suis donc rendu sur le site HuggingFace afin de chercher des modèles pouvant répondre à mon besoin. Vu qu'on devait déployer un modèle on Promise sur nos propres GPU, j'ai pas pu utiliser les modèles les plus performants d'Anthropic, mais j'ai pu trouver ce dont j'avais besoin ie le modèle Qwen2.5 car il répondait aux contraintes de temps et de précision.
+- **Quels modèles avez vous testé pour le benchmarking des LLM sur le projet caviardage et pourquoi ces modèles là ?** J'ai testé des modèles de mistral d'abord pour utiliser IA souveraine et car le temps d'exécution était très bon, mais la précision n'était pas au rendez vous. Je me suis donc rendu sur le site HuggingFace afin de chercher des modèles pouvant répondre à mon besoin. Vu qu'on devait déployer un modèle on-premise (sur nos propres serveurs) sur nos propres GPU, j'ai pas pu utiliser les modèles les plus performants d'Anthropic, mais j'ai pu trouver ce dont j'avais besoin ie le modèle Qwen2.5 car il répondait aux contraintes de temps et de précision.
 * **Vs avez un fix ou feature a faire qui arrive, comment utilisez vous l’IA pour résoudre ? comment procédez vous ?** Cela dépend du bug/feature. Si c'est rapide je préfère le faire moi même, si c'est une tâche que j'ai déjà effectué récemment je laisse l'IA gérer, tout en repassant derrière. Si c'est une grosse evol je planifie mes tâches, je discute éventuellement avec l'IA de mon implémentation et je passe au développements en m'aidant de l'IA si besoin.
 
 
@@ -89,19 +90,22 @@ Je découpe et priorise les tâches : les plus importantes au début et les - im
 **Questions codes :** 
 **C'est quoi une interface ?**
 Une interface est un contrat de comportement. Une interface ne peut avoir d'état, n'a pas de constructeur, et peut hériter d'autres interfaces. Une interface peut uniquement définir des constantes et méthodes. Elle peut définir des constantes mais qui ne sont pas modifiables, et les méthodes sont des signatures (juste déclarés sans le code implémenté), elle ne peut posséder d'attributs. **Ce que l'objet sait faire** : Un document et une facture sont imprimables
+**Une classe peut implémenter plusieurs interfaces** (`class Facture implements Imprimable, Exportable`).
 
 **Quelle diff avec une classe abstraite ?**
-Une classe abstraite est une classe qui ne peut être instanciée. Elle joue généralement de modèle de base pour les classes qui vont y hériter. Elle peut définir des méthodes  (code partagé  pour ses sous classes) ainsi que des valeurs pour ses attributs, ainsi qu'un constructeur.  **Ce que l'objet est :** Ex : un chien est un Animal.  **Une classe peut implémenter une interface**
+Une classe abstraite est une classe qui ne peut être instanciée. Elle joue généralement de modèle de base pour les classes qui vont y hériter. Elle peut définir des méthodes  (code partagé  pour ses sous classes) ainsi que des valeurs pour ses attributs, ainsi qu'un constructeur.  **Ce que l'objet est :** Ex : un chien est un Animal.
+**La différence clé à dire en entretien :** une classe ne peut **hériter (extends) que d'une seule** classe (abstraite ou non), mais elle peut **implémenter (implements) autant d'interfaces** qu'elle veut. Donc : classe abstraite = partager du **code** et un état entre classes de la même famille, interface = imposer un **comportement** à des classes qui n'ont rien à voir entre elles.
 
 **Diff entre == et === ?** 
-Le premier vérifie l'égalité, le deuxième le type en plus.
+Le premier vérifie l'égalité **après conversion de type** (il essaie de convertir les deux valeurs dans le même type avant de comparer), le deuxième compare la valeur **et** le type, sans conversion.
+Ex en JS : `"5" == 5` → true (la string est convertie en nombre), `"5" === 5` → false. `0 == ""` → true, `null == undefined` → true. C'est pour ces pièges qu'on utilise toujours `===`.
 
 **C'est quoi les Exceptions ? Comment les écrire ?**
 Une exception est un objet qui représente une situation anormale ou bloquante survenant lors de l'exécution. Elle interrompt le flux normal du programme et propage l'erreur. Elle se lève avec le mot clé throw et se gère via un bloc try/catch/finally. 
 
 **Comment sécuriser une API ?**
 Pour sécuriser une API il faut mettre en place différents systèmes: 
-Tout d'abord : Configuration stricte des en tete **CORS** pour n'autoriser que les domaines front-end légitimes à appeler l'API depuis un navigateur.  Autoriser uniquement les utilisateurs authentifié **(token jwt)** d'accéder aux appels. Mettre en place une limite d'appelle à la minute pour la protection contre les bots. Mettre un DTO en place pour accepter que les valeurs entrantes bien formatées. Chiffrement du transport **HTTPS/TLS** obligatoire pour qu'aucune donnée ne circule librement sur le réseau. Echappement des requêtes pour éviter les injections SQL.
+Tout d'abord : Configuration stricte des en tete **CORS** pour n'autoriser que les domaines front-end légitimes à appeler l'API depuis un navigateur (attention, CORS protège seulement contre les autres **sites** dans un navigateur : un script, Postman ou curl peuvent quand même appeler l'API, donc ça remplace pas l'authentification).  Autoriser uniquement les utilisateurs authentifié **(token jwt)** d'accéder aux appels. Mettre en place une limite d'appelle à la minute pour la protection contre les bots. Mettre un DTO en place avec de la **validation** (`#[Assert\...]`) pour n'accepter que les valeurs entrantes bien formatées. Chiffrement du transport **HTTPS/TLS** obligatoire pour qu'aucune donnée ne circule librement sur le réseau. **Requêtes préparées (paramétrées)** pour éviter les injections SQL : la requête et les données sont envoyées **séparément** à la BDD, donc une donnée ne peut jamais être interprétée comme du SQL. Ex : `SELECT * FROM users WHERE email = :email` puis on passe `email` en paramètre, au lieu de concaténer `"... WHERE email = '" . $email . "'"`. (L'échappement à la main c'est l'ancienne méthode, fragile car on peut en oublier. Doctrine/l'ORM fait déjà des requêtes préparées.)
 
 **C'est quoi l'injection de dépendance ?**
 L'injection de dépendance permet de passer les services dont une classe a besoin dans son constructeur, sans avoir a l'instancier. En injectant des interfaces, le code métier reste agnostique de l'implémentation concrète. C'est le DIC qui prend en charge l'instanciation et le câblage de l'application. Utile aussi pour les tests puisqu'on peut remplacer les dépendances par des mocks.
@@ -110,19 +114,20 @@ L'injection de dépendance permet de passer les services dont une classe a besoi
 Respect des règles **ACID**, Atomicité, cohérence, isolation durabilité
 **Atomicité** : Tout ou rien : Encapsule la transaction, si une requête échoue, tout échoue.
 **Cohérence** : Empêcher les doublons (contraintes d'unicités explicites), empêcher les valeurs invalides (check)
-**Isolation** : Empecher deux requetes simultanées de modifier la meme données en meme temps
+**Isolation** : Deux transactions qui tournent en même temps ne se marchent pas dessus : chacune se comporte comme si elle était seule (ex : deux personnes qui achètent la dernière place en même temps, une seule doit l'avoir). Selon le niveau d'isolation choisi (read committed, repeatable read, serializable…) c'est plus ou moins strict, et on peut aussi verrouiller une ligne (`SELECT ... FOR UPDATE`).
 Durabilité : Une fois la transaction passée, les données sont sauvegardées de manière **persistante**
 Pour les appels d'API sensibles (paiements etc) imposer une clé d'idempotence stockée temporairement : si le client renvoie la meme requete deux fois par erreur, la seconde est ignorée.
 **Quelle diff entre les attributs de PHP 8 et l'ancienne version 7 ?**
-Php 8 a introduit les attributs natifs structurés au lieu du système de commentaire bricolé. Imposant ainsi aussi une meilleure sécurité car les erreurs de syntaxe sont apparentes.
+Php 8 a introduit les attributs natifs structurés au lieu du système de commentaire bricolé. Avant (PHP 7) les annotations étaient écrites dans des **commentaires** `/** @ORM\Column */`, que PHP ignorait et qu'une librairie devait lire et parser elle-même. Maintenant les attributs `#[ORM\Column]` font partie du **langage** : PHP les comprend, l'éditeur les autocomplète, une faute de frappe ou une classe inexistante est détectée, et c'est plus rapide à lire (pas besoin de parser du texte). C'est donc plus **fiable**, pas vraiment une question de sécurité.
 
 **C 'est quoi les principes SOLID ?**
 5 principes pour la programmations orientées objets. 
-S : Sigle Responsability -> Une classe doit avoir qu'une seule tâche à remplir
+S : Single Responsibility -> Une classe doit avoir qu'une seule tâche à remplir
 O : Open/Closed Principle -> Une entité doit etre ouverte a l'extension mais fermée à la modification.
 L : Liskov Substitution Principle : Les classes enfants doivent pouvoir remplacer les classes parents sans altérer le bon fonctionnement du programme
 I : Interface Segregation Principle -> Mieux vaut des petites interfaces spécifiques qu'une seule grande interface générale.
-D : Depedency Inversion Principle -> Les modules de haut niveau ne doivent pas dépendre des modules de bas niveau
+D : Dependency Inversion Principle -> Les modules de haut niveau (le métier) ne doivent pas dépendre des modules de bas niveau (BDD, envoi de mail…) : **les deux doivent dépendre d'abstractions (interfaces)**.
+Ex : mon `OrderService` ne dépend pas de `MySqlOrderRepository` directement, mais d'une interface `OrderRepositoryInterface`. `MySqlOrderRepository` implémente cette interface. Je peux passer à MongoDB ou à un mock dans les tests sans toucher à `OrderService`. C'est exactement l'idée de l'injection de dépendance et de l'architecture hexagonale (voir [[Architecture Logicielle]]).
 SQL vs NoSQL ? 
 
 **Etude de cas :**

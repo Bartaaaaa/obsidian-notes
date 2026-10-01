@@ -1,0 +1,24 @@
+{
+  "id": "conv-1790696028876-r1js8elae",
+  "providerId": "claude",
+  "title": "Organize page content into categorized files",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790696028898,
+  "lastActivityAt": 1790841788661,
+  "sessionId": "ecbcaf6a-58e6-414c-9f40-7b712361bab1",
+  "selectedModel": "opus",
+  "providerState": {
+    "providerSessionId": "ecbcaf6a-58e6-414c-9f40-7b712361bab1"
+  },
+  "linkedContentPath": "A voir.md",
+  "usage": {
+    "model": "opus",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1278,
+    "cacheReadInputTokens": 175200,
+    "contextWindow": 1000000,
+    "contextTokens": 176480,
+    "percentage": 18,
+    "contextWindowIsAuthoritative": true
+  }
+}

@@ -1,5 +1,5 @@
-**K6** est un outif développé par Grafana qui va physiquement exécuter le test de charge
- C'est lui qui va stresser le GPU.
+**K6** est un outil développé par Grafana qui va physiquement exécuter le test de charge
+ C'est lui qui va stresser les serveurs (et donc le GPU sur lequel tournent les modèles).
  Il va lire le script et le jeu de données, et va simuler des dizaines ou centaines d'utilisateurs virtuels.
  Il va bombarder trois API : LLM, CLIP & YOLO  avec les images et textes des PDF
  Pendant qu'il tire sur les serveurs, k6 va mesurer le temps de réponse de chaques API avec les images et textes des PDF

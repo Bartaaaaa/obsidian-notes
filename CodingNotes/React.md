@@ -5,7 +5,7 @@ La documentation officielle préconise d'utiliser un framework qui permettent d'
 On peut utiliser Next.js. **Next.js** est un framework construit autour de React qui simplifie plein de fonctionnalités qui ne sont pas incluses dans React de base et qui permet le développement FullStack. Il permet le rendu hybride : côté client et SSR, l'optimisation des performances (fractionnement automatique du code), permet de créer des composants qui s'exécutent uniquement coté serveur, renforce la sécurité en gardant la logique cote serveur, favorisent le SEO grâce au HTML immédiatement disponible.
 Autre caractéristiques que tout framework doit contenir : support intégré de typescript, tests de qualité de code avec Jest et Cypress, internationalisation et support des langues, etc.
 ![[Pasted image 20260301102658.png]]
-On peut aussi utiliser React router. Pour créer l'app faut lancer la commande npx create-react-router@latetest par ex.
+On peut aussi utiliser React router. Pour créer l'app faut lancer la commande npx create-react-router@latest par ex.
 
 **1. L'illusion du "tout côté client" (Le serveur statique)** Même une application React "côté client" (avec un backend PHP/Node séparé) utilise deux serveurs :
 
@@ -26,7 +26,10 @@ On peut aussi utiliser React router. Pour créer l'app faut lancer la commande n
 
 **3. Pourquoi React pur est mauvais pour le SEO ?**
 
-Quand le **crawler d'indexation** (ex: Googlebot) parcourt le site, le serveur statique lui renvoie le fichier `index.html` initial.   Le crawler voit le `<div id="root"></div>`, conclut qu'il n'y a pas de texte ni de contenu, et s'en va. Pour voir le contenu, il faudrait que le robot télécharge le JS et l'exécute pour qu'il "fabrique" les balises HTML. Google sait un peu le faire, mais c'est très lent et pénalise fortement le référencement naturel.    
+Quand le **crawler d'indexation** (ex: Googlebot) parcourt le site, le serveur statique lui renvoie le fichier `index.html` initial.   Le crawler voit le `<div id="root"></div>`, et à ce stade il n'y a pas de texte ni de contenu. Pour voir le contenu, il faut que le robot télécharge le JS et l'exécute pour qu'il "fabrique" les balises HTML.
+- **Google** sait le faire : il indexe en 2 temps, d'abord le HTML, puis plus tard (quand il a des ressources dispo) il exécute le JS. Ça marche, mais c'est plus lent à être indexé et moins fiable (si le JS plante ou met trop de temps, le contenu est raté).
+- **Les autres robots** (beaucoup de moteurs secondaires, les aperçus de liens sur Slack/LinkedIn/WhatsApp, certains crawlers d'IA) n'exécutent souvent **pas** le JS → eux voient vraiment une page vide.
+Donc c'est pas "Google pénalise React", c'est que le HTML vide au départ rend l'indexation plus lente et plus risquée.    
 
 **4. Pourquoi dit-on que React est une SPA (Single Page Application) ?** 
 
@@ -52,11 +55,12 @@ Au lieu d'envoyer un HTML vide, le serveur Next.js exécute lui-même le code Re
 
 - **Déclaratif vs Impératif :** En React, on "déclare" à quoi l'interface doit ressembler en fonction de l'état des données (le _State_), et React se charge de mettre à jour le DOM tout seul. (À l'inverse du JavaScript "Vanilla" où l'on doit sélectionner manuellement les éléments avec `document.getElementById` pour les modifier, ce qui est une approche "impérative").
 Vue.js, Angular, Svelte sont des frameworks component based architecture.
-React est utilisé par Meta (créé par React), Netflix, Uber,... Surtout pour la réutilisabilité des composants adapté pour tous les types d'écrans. Uber aussi pour la gestion complexe d'états : react gère bien les changements d'états fréquents.
+React est utilisé par Meta (qui a créé React), Netflix, Uber,... Surtout pour la réutilisabilité des composants adapté pour tous les types d'écrans. Uber aussi pour la gestion complexe d'états : react gère bien les changements d'états fréquents.
 
-**2 - Quelle est la différence entre state et props ?** La principale différence réside dans le fait que les props sont des données immuables passées de parent à enfant pour la configuration initiale, tandis que le state est utilisé pour gérer les données internes d'un composant qui peuvent changer au fil du temps et qui déclencheront le rendu du composant lorsque modifiées. Les props sont destinées à la communication entre composants, tandis que le state est destiné à la gestion des données locales d'un composant. En gros les props sont passés par le parent alors que les states sont gérés par l'enfant.
+**2 - Quelle est la différence entre state et props ?** La principale différence réside dans le fait que les props sont des données passées de parent à enfant, que l'enfant **ne peut pas modifier** (lecture seule). Elles ne sont pas figées pour autant : si le parent change la valeur, l'enfant se re-rend avec les nouvelles props, tandis que le state est utilisé pour gérer les données internes d'un composant qui peuvent changer au fil du temps et qui déclencheront le rendu du composant lorsque modifiées. Les props sont destinées à la communication entre composants, tandis que le state est destiné à la gestion des données locales d'un composant. En gros les props sont passées par le parent (et c'est lui qui les change), alors que le state est géré par le composant lui-même. Souvent le state d'un parent devient la prop de son enfant.
 
-**3 - Décrire le fonctionnement du hook "useEffect" ?**  Il permet de gérer les effets secondaires dans les composants fonctionnels. Les effets secondaires sont des actions qui se produisent en dehors du cycle de vie de rendu normal, comme l'interaction avec des API externes, la modification du DOM, la gestion des abonnements, etc. useEffect vous permet de spécifier des fonctions à exécuter après le rendu ou lors de la mise à jour du composant. La tableau de dépendance (deuxième argument du useEffect) indique quand le hook doit être utilisé. Un tableau vide signifie au chargement du composant, une valeur signifie à son changement, et rien mettre signifie à chaque modification du DOM (à éviter car ralentit bcp la page).
+**3 - Décrire le fonctionnement du hook "useEffect" ?**  Il permet de gérer les effets secondaires dans les composants fonctionnels. Les effets secondaires sont des actions qui se produisent en dehors du cycle de vie de rendu normal, comme l'interaction avec des API externes, la modification du DOM, la gestion des abonnements, etc. useEffect vous permet de spécifier des fonctions à exécuter après le rendu ou lors de la mise à jour du composant. La tableau de dépendance (deuxième argument du useEffect) indique quand le hook doit être utilisé. Un tableau vide `[]` signifie une seule fois, après le **premier rendu** du composant (le montage), une valeur `[userId]` signifie après le premier rendu **puis** à chaque fois que cette valeur change, et ne rien mettre signifie **après chaque rendu** du composant (= à chaque changement de state ou de props, pas "à chaque modification du DOM"). Ce dernier cas est à éviter : ça relance l'effet tout le temps, et si l'effet modifie un state ça peut faire une boucle infinie (effet → setState → rendu → effet → …).
+Note : en dev avec le `StrictMode`, React lance l'effet 2 fois au montage exprès pr vérifier que la fonction de nettoyage marche bien, c'est normal.
 ### C'est quoi la "gestion des abonnements" ?
 
 Un abonnement (subscription), c'est quand ton composant se met sur écoute pour surveiller un événement qui se passe à l'extérieur.
@@ -113,7 +117,7 @@ useEffect(() => {
 
 **Comparaison pour l'entretien :**
 
-- **`.then()` :** Plus proche du fonctionnement natif des Promesses, il évite de déclarer une fonction intermédiaire. Cependant, sur des enchaînements complexes (plusieurs appels dépendants), il peut mener à un "Callback Hell" ou à une structure de code moins lisible.
+- **`.then()` :** Plus proche du fonctionnement natif des Promesses, il évite de déclarer une fonction intermédiaire. Cependant, sur des enchaînements complexes (plusieurs appels dépendants), on se retrouve avec des `.then()` imbriqués les uns dans les autres, moins lisibles. (Le vrai "Callback Hell" c'est l'ancienne façon avec des callbacks imbriqués, que les Promesses ont justement été créées pour éviter, mais des `.then()` mal écrits peuvent y ressembler.)
     
 - **`async/await` :** Offre une syntaxe plus moderne et "plate". C'est l'approche privilégiée aujourd'hui car elle facilite la gestion des erreurs avec les blocs `try/catch`, rendant le flux de données plus explicite.
 
@@ -121,11 +125,11 @@ useEffect(() => {
 **React Router :** Cette bibliothèque permet de gérer la navigation et les routes dans une
 application React. Vous pouvez créer des routes pour différents composants et gérer la
 navigation entre eux de manière déclarative.
-Ce package comprend trois hooks : 
+Ce package comprend plein de hooks, les 3 principaux : 
 **useLocation** =  renvoie url actuel,
 **useNavigate**= renvoie vers l'url indiqué, 
 **useParams** = renvoie le parametre dans l'url précisé,
-Et possède **BrowserRoute** qui encapsule **Routes** qui encapsule **Route** qui définit les routes du projet dans le fichier App.tsx. On passe à **Route** le composant et la route qui y mène.
+Et possède **BrowserRouter** qui encapsule **Routes** qui encapsule **Route** qui définit les routes du projet dans le fichier App.tsx. On passe à **Route** le composant et la route qui y mène.
 Le header et le footer sont définis en dehors de l'élément **Routes**
 
 **Redux**  : Redux est une bibliothèque de gestion d'état pour les applications React. Elle
@@ -162,9 +166,9 @@ Au lieu d'écrire du texte en dur dans ton code, tu écris des "clés".
 
 C'est la référence absolue dans l'écosystème React (via le package `react-i18next`) pour traduire un site dynamiquement sans le recharger.
 
-**UseIntl** : Un hook (natif de react) qui fait la même chose que 18next mais un peu différemment.
+**useIntl** : Un hook de la librairie **react-intl** (FormatJS), pas natif de React, qui fait la même chose que i18next mais un peu différemment (il gère aussi bien le formatage des dates, nombres et devises selon la langue).
 
 **9 - Quel(s) outil(s) permet de gérer les différentes versions de node en local ?**
 nvm, volta
 **10 - Quel(s) outil(s) permet de gérer les packages d'une application React ?**
-npm, yarn (plus rapide que npm), pnpm (performant npm)
+npm, yarn, pnpm. Yarn était plus rapide que npm à sa sortie (2016) mais npm a rattrapé son retard. Aujourd'hui **pnpm** est le plus rapide et prend le moins de place disque : il stocke chaque package une seule fois sur la machine et fait des liens vers ce stockage au lieu de tout recopier dans chaque `node_modules`.

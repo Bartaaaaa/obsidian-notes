@@ -15,7 +15,7 @@ Symfony Messenger est un composant implémentant le pattern _Message Queuing_. I
 **Architecture et flux d'exécution (Les composants clés)**
 
 - **Le Message (DTO) :** Une classe PHP simple (Data Transfer Object) dont le seul rôle est de transporter les données sérialisables nécessaires à l'exécution de la tâche (ex: un ID utilisateur, un chemin de fichier). Il ne contient aucune logique métier.
-- **Le MessageBus (Dispatcher) :** Le service central appelé par l'application (souvent depuis un Controller). Son rôle est de recevoir le qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq et de l'acheminer (Routing) vers la bonne destination. Dans un contexte asynchrone, le Bus sérialise le Message et l'envoie vers un **Transport**. (Par ex appelé depuis le controlleur)
+- **Le MessageBus (Dispatcher) :** Le service central appelé par l'application (souvent depuis un Controller). Son rôle est de recevoir le Message et de l'acheminer (Routing) vers la bonne destination. Dans un contexte asynchrone, le Bus sérialise le Message et l'envoie vers un **Transport**. (Par ex appelé depuis le controlleur)
 - **Le Transport (Message Broker / File d'attente) :** Le système de stockage temporaire. Il retient les messages en file d'attente jusqu'à ce qu'ils soient traités. Ce système peut être la base de données (Doctrine), Redis, RabbitMQ (AMQP), ou Amazon SQS.
 - **Le Worker (Le processus de consommation) :** C'est un élément critique. Il s'agit d'un script en ligne de commande (`php bin/console messenger:consume`) qui **doit tourner en permanence** sur le serveur d'hébergement (souvent maintenu en vie par un gestionnaire de processus comme _Supervisor_ ou _Systemd_). Il scrute (poll) le Transport en continu pour voir si de nouveaux messages sont dans la file d'attente.
 - **Le Handler (La logique métier) :** Une classe taguée avec l'attribut `#[AsMessageHandler]`. Lorsqu'un Worker récupère un Message dans le Transport, il le désérialise et le transmet au Handler correspondant. C'est ici que le code lourd (envoi de mail, traitement) est réellement exécuté.
@@ -56,10 +56,10 @@ Concrètement, Doctrine compare la version actuelle de la base de données avec 
 
 Le cycle de vie d'une migration s'articule autour de trois actions clés :
 
-- **Générer :** `php bin/console make:migration` _Compare vos entités avec la base de données et crée un nouveau fichier de migration contenant le code SQL de mise à jour._ (make:entity pour mettre à jour une table php (suivi d'une migrate))
+- **Générer :** `php bin/console make:migration` _Compare vos entités avec la base de données et crée un nouveau fichier de migration contenant le code SQL de mise à jour._ (Le workflow complet : `make:entity` pour créer/modifier l'entité PHP → `make:migration` pour générer le fichier SQL → `doctrine:migrations:migrate` pour l'appliquer en BDD)
 - **Exécuter :** `php bin/console doctrine:migrations:migrate` _Applique à la base de données tous les fichiers de migration qui sont en attente._
 - **Vérifier :** `php bin/console doctrine:migrations:status` _Affiche l'état actuel de vos migrations (exécutées, manquantes, etc.)._
-**Réversibilité (`up` et `down`) :** Chaque fichier généré contient une méthode `up()` pour appliquer les modifications, et une méthode `down()` pour les annuler (rollback) en cas d'erreur.
+**Réversibilité (`up` et `down`) :** Chaque fichier généré contient une méthode `up()` pour appliquer les modifications, et une méthode `down()` pour les annuler (rollback). Attention le `down()` n'est **pas** lancé automatiquement si la migration plante : c'est à nous de le lancer à la main (`doctrine:migrations:migrate prev` ou `doctrine:migrations:execute --down <version>`). Et un `down()` qui supprime une colonne perd les données qu'elle contenait.
 
 **5 - Quelle est la commande pour installer un package ?**
 composer require 
@@ -70,7 +70,7 @@ XDebug, Zend Debugger
 **8 - A quoi sert Doctrine ?** 
 Doctrine est une bibliothèque de mapping objet-relationnel (ORM Object Relationnal Mapper) en PHP. Elle facilite la manipulation et la gestion des données dans une application PHP en permettant de travailler avec des bases de données de manière orientée objet.
 On tape au dessus du champ : 
-@ORM\Column(type="type_champ)
+@ORM\Column(type="type_champ")
 (On peut par ailleurs préciser dans l'attribut length, unique, name)
 Pour le **NoSQL**, on utilise **ODM (object-docment Mapper)** qui fonctionne de la même manière mais pour du NoSQL.
 Pour ODM on précise 
@@ -92,7 +92,7 @@ Exemple :
 L'opérateur nullsafe est une fonctionnalité introduite dans PHP 8.0 pour simplifier la manipulation de valeurs potentiellement nulles (null) de manière concise et sécurisée. Il permet d'appeler des méthodes et d'accéder à des propriétés sur des objets sans avoir à vérifier si l'objet lui-même est nul. Cela facilite la gestion des erreurs liées à des valeurs nulles. **$object?->methodName();**
 
 **11 - Où sont stockés les logs et le cache ? Quelle est la commande pour vider le cache ?** 
-Dans le dossier var, le fichier dev.log. 
+Dans le dossier `var/` : les logs dans `var/log/` (ex : `var/log/dev.log`, un fichier par environnement), et le cache dans `var/cache/` (`var/cache/dev/`, `var/cache/prod/`). 
 La commande pour vider le cache : php bin/console cache:clear
 
 **13 - Qu'est-ce qu'un attribut ?**
@@ -122,16 +122,41 @@ FOSElasticaBundle : Permet d'intégrer Elasticsearch à Symfony. Il est utilisé
  **LexikJWTAuthenticationBundle** : Utilisé pour sécuriser les API REST. Il permet de mettre en place une authentification _stateless_ (sans état) en générant et en validant des tokens JWT
  
  **Connaissez vous le framework Prado ?** 
- Prado est un framework PHP open-source utilisé pour la programmation d'applications Web avec PHP. C'était pionner en 2000 mais aujourd'hui est legacy.
+ Prado est un framework PHP open-source utilisé pour la programmation d'applications Web avec PHP. C'était un pionnier (créé en 2004) mais aujourd'hui c'est legacy.
  Prado = Rapid Application Development Object Oriented.
  Il a une approche événementielle et par composants. Il fonctionne pas en MVC mais avec un système de pages et de contrôles réutilisables où les intéractions utilisateurs déclenchent des événements côté serveurs.
  
 **Qu'est-ce que API Plateform ?** 
-Framework open source pour construire des API web modernes (Rest ou GraphQL). API Plateform génère automatiquement une API complète à partir des modèles de données.
-**Génération automatique du CRUD** en ajoutant simplement #[ApiResource] sur une entité
-PHP. Génération native d'OpenAPI, pagination automatique, filtres, tri, validation, voters.
+**En une phrase :** API Platform est un framework  qui **fabrique une API REST ou GraphQL à ta place** à partir de tes entités. Tu décris *tes données*, il écrit *toute la plomberie*.
 
+**Le problème qu'il résout**
+Imagine que tu veux exposer une entité `Product` en API REST dans un Symfony "classique". Tu dois écrire toi-même :
+- un **Controller** avec 5 méthodes (lister, voir, créer, modifier, supprimer)
+- les **routes** (`#[Route('/api/products', methods: ['GET'])]`…)
+- la **sérialisation** : transformer l'objet PHP en JSON pour la réponse, et le JSON reçu en objet PHP
+- la **validation** des données reçues + renvoyer une erreur `422` propre si c'est invalide
+- la **pagination** (`?page=2`), les **filtres** (`?name=chaise`), le **tri**
+- les bons **codes HTTP** (`201` à la création, `404` si introuvable, `204` à la suppression)
+- la **documentation** de l'API (Swagger / OpenAPI) pour le front
+
+Et tout ça… **pour chaque entité**. C'est du code répétitif, toujours le même : c'est ce qu'on appelle du *boilerplate*.
+
+**Ce que fait API Platform**
+Tu ajoutes **une seule ligne** `#[ApiResource]` sur ton entité, et API Platform génère **tout ce qui est listé au-dessus** automatiquement. Aucun controller à écrire.
+
+
+```mermaid
+flowchart LR
+    E["📄 Entité Product<br/>+ #[ApiResource]"] --> AP{{"⚙️ API Platform"}}
+    AP --> R["🛣️ Routes CRUD"]
+    AP --> S["🔄 JSON ⇄ objet PHP"]
+    AP --> V["✅ Validation + erreurs 422"]
+    AP --> P["📑 Pagination / filtres / tri"]
+    AP --> D["📘 Doc Swagger /api"]
 ```
+
+**Exemple**
+```php
 namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 
@@ -147,3 +172,33 @@ class Product
     public string $name;
 }
 ```
+Avec juste ce code, tu obtiens directement ces routes :
+
+| Méthode | URL | Ce que ça fait | Code retour |
+|---|---|---|---|
+| `GET` | `/api/products` | Liste paginée des produits | 200 |
+| `GET` | `/api/products/1` | Le produit n°1 | 200 (ou 404) |
+| `POST` | `/api/products` | Crée un produit (validé par `#[Assert\NotBlank]`) | 201 (ou 422) |
+| `PUT` / `PATCH` | `/api/products/1` | Remplace / modifie en partie le produit n°1 | 200 |
+| `DELETE` | `/api/products/1` | Supprime le produit n°1 | 204 |
+
+Et une page **`/api`** avec la doc Swagger interactive, où on peut tester chaque route depuis le navigateur.
+
+**Comment ça marche en coulisses**
+Pour chaque requête, API Platform enchaîne toujours les mêmes étapes :
+1. **Désérialisation** : le JSON reçu devient un objet `Product`
+2. **Validation** : les contraintes `#[Assert\...]` sont vérifiées
+3. **State Processor** (écriture) ou **State Provider** (lecture) : par défaut, il utilise **Doctrine** pour enregistrer / lire en BDD
+4. **Sérialisation** : l'objet redevient du JSON pour la réponse
+
+Le point important : **tout est personnalisable**. On n'est pas bloqué par le "tout automatique" :
+- **Choisir les routes** exposées : `#[ApiResource(operations: [new Get(), new GetCollection()])]` → API en lecture seule
+- **Choisir les champs** visibles avec les groupes de sérialisation (`normalizationContext` / `#[Groups]`) → ne jamais renvoyer un mot de passe par exemple
+- **Sécuriser** : `new Delete(security: "is_granted('ROLE_ADMIN')")`, ou avec des **Voters**
+- **Filtres** : `#[ApiFilter(SearchFilter::class, properties: ['name' => 'partial'])]` → `/api/products?name=cha`
+- **Logique métier** : écrire son propre State Provider / Processor (ex : envoyer un mail à la création, lire les données depuis une autre API au lieu de la BDD)
+
+**Quand l'utiliser ?**
+- ✅ API qui fait surtout du **CRUD** sur des entités (back-office, back d'une appli React/Vue, appli mobile)
+- ✅ Quand on veut une API **standard et documentée** rapidement
+- ❌ Moins utile si l'API est surtout composée d'**actions métier** complexes (`/commandes/1/valider`, `/calculer-devis`) plutôt que de ressources : dans ce cas des controllers Symfony classiques peuvent être plus simples

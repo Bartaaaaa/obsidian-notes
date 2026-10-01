@@ -1,0 +1,7 @@
+Logiciel d'automatisation open source qui permet de configurer des systèmes, déployer des logiciels et d'orchestrer des flux de travail pour la mise en oeuvre d'application, mise à jour système. 
+**OpenSSH** pour le transport (outil pour se connecter à une machine/serveur distant de manière sécurisée).
+Ansible utilise des **playbooks** pour l'automatisation de tâche, dans lesquels ont définit l'état souhaité d'un système local ou distant. Les playbooks sont écrits en **YAML**.
+**Inventory** : cible les serveurs cibles : web, db, prod etc.
+Les variables **sensibles** (mots de passe, tokens, clés) sont chiffrées dans le **vault** (Ansible Vault). Les autres variables (ports, chemins, versions…) restent en clair dans des fichiers YAML (`group_vars`, `host_vars`).
+**Agentless** : contrairement à d'autres outils (Puppet, Chef), Ansible n'a besoin de **rien installer** sur les serveurs cibles, juste SSH et Python.
+Ex : J'ai développé une application basée sur Visual C. Si je souhaite exécuter cette app sur un ordi, je dois remplir certaines conditions telles que les DLL de la biblio Microsoft Visual C etc. Ansible s'assure donc de cela que tous les paquets de base et tous les logiciels soient installés sur l'ordinateur afin que l'app puisse fonctionner sans problème dans tous les environnements.

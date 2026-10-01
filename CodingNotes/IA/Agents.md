@@ -15,7 +15,7 @@ Bien sûr, cette spécialisation et cette précision accrues ont un coût en ter
 
 ### Pour quels types de tâches les agents sont-ils performants ?
 
-Un exemple très simple de système automatisé pourrait consister à extraire les champs clés des factures, puis à les enregistrer dans une base de données. Les tâches aux processus clairs et répétables comme celle-ci sont parfaitement adaptées aux agents.
+Un exemple très simple de système automatisé pourrait consister à extraire les champs clés des factures, puis à les enregistrer dans une base de données. Les tâches aux processus clairs et répétables comme celle-ci sont parfaitement adaptées à l'automatisation avec un LLM. (Nuance : si toutes les étapes sont connues à l'avance, un **workflow scripté** suffit souvent, pas besoin d'un agent autonome, voir le spectre d'autonomie plus bas.)
 L'use Case Matrix permet de rapidement savoir si un agent vaut le coup pour l'utilisation d'agents.
 
 ![[Pasted image 20260516112002.png]]
@@ -41,12 +41,12 @@ Si l'on considère l'ensemble de ces éléments, ce contexte oriente un modèle 
 
 Une fois que l'agent dispose de son contexte, il est temps de définir les tâches qu'il doit accomplir. Déterminer ces tâches est sans doute l'élément le plus important que vous apprendrez en matière de création d'agents.
 
-Un agent doit posséder aussi une mémoire, pour se souvenir ce qui a marché afin de procéder différemment la prochaine fois. Ainsi, au cours des exécutions, ce dernier va apprendre de ses erreurs. Une bonne méthode est d'avoir un LLM pour l'évaluation à la fin.
+Un agent doit posséder aussi une mémoire, pour se souvenir ce qui a marché afin de procéder différemment la prochaine fois. Ainsi, au cours des exécutions, ce dernier va apprendre de ses erreurs. (Attention, le modèle lui-même n'apprend rien : c'est **nous** qui stockons ces souvenirs (fichier, BDD) et qui les remettons dans son contexte à la prochaine exécution.) Une bonne méthode est d'avoir un LLM pour l'évaluation à la fin.
 
 Enfin, pour éviter que l'agent hallucine, on rajoute un Guardrail. Cela peut etre un LLM ou du code, voire même un humain, qui va vérifier l'output final pour vérifier sa conformité.
 
 Il existe différents designs patterns pour améliorer les agents. 
-- **Relection** : Le modèle produit un contenu, le relis, et le corrige.
+- **Reflection** : Le modèle produit un contenu, le relis, et le corrige.
 - **Tool** **use** : Une liste d'éléments que le LLM peut appeler : web search, database queries, code execution. C'est important car un LLM est uniquement un générateur de texte. Et plus il a de contexte plus sa réponse sera bonne. A noter : Un LLM peut pas exécuter du code, mais peut en faire la requête.
 - **Planning** : Au lieu d'une liste claire de tâches à effectuer, le LLM peut créer sa propre liste pour répondre au mieux à un besoin. C'est pas mal de lui dire de faire le plan en JSON
 * **Multi-agent** : Chaque agent a un role précis. Pour éviter qu'un agent soit généraliste à tout faire avec un prompt énorme. Cela permet d'utiliser différents LLM, un plus rapide pour une tache rapide, un autre plus lent pour une autre tache. Paralléliser leur tache. Mais attention cela peut créer du conflit si deux agents modifient le meme fichier etc.

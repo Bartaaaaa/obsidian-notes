@@ -9,7 +9,8 @@ Moteur de recherche et d'analyse autonome, écrit en Java bâti sur la bilio apa
 - **Indexation*** : Les données sont ingérées dans Elasticsearch via le processus d’indexation. Lors de [l’indexation](https://www.geeksforgeeks.org/dbms/indexing-in-databases-set-1/) , les documents sont analysés, tokenisés et stockés dans des index inversés, ce qui permet des opérations de recherche rapides et efficaces.  
 - **Requêtes** : Les utilisateurs interagissent avec Elasticsearch par le biais de requêtes, qui peuvent être de simples recherches par mots-clés ou des agrégations complexes. Elasticsearch utilise un **DSL (langage spécifique au domaine)*** pour exprimer différents types de requêtes, allant des recherches plein texte de base aux agrégations et filtres avancés.
 -  **Partionnement** & **Recherche distribuée** : Elasticsearch utilise le partitionnement pour répartir les données sur plusieurs nœuds d'un cluster, améliorant ainsi les performances et l'évolutivité. Chaque partition est un fragment d'index autonome, permettant à Elasticsearch de paralléliser les opérations de recherche et d'indexation.
-- **Replication :** Pour garantir la redondance des données et la tolérance aux pannes. Chaque partition peut comporter une ou plusieurs répliques, qui servent de sauvegardes en cas de défaillance d'un nœud ou de perte de données.
+- **Replication :** Pour garantir la redondance des données et la tolérance aux pannes. Chaque partition peut comporter une ou plusieurs répliques (des copies sur d'autres nœuds), qui prennent le relais en cas de défaillance d'un nœud.
+⚠️ Une réplique c'est **pas une sauvegarde** : si on supprime ou corrompt un document par erreur, la suppression est aussi faite sur toutes les répliques. Pour les vraies sauvegardes, ES a les **snapshots** (copie de l'index à un instant T, stockée ailleurs, ex : sur S3).
 
 ES stocke des documents JSON, qui vivent dans un index. Chaque index a un mapping : la définition des champs et leur type (~ le schéma de la base), c'est ce qui est dans le fos_elastica.yaml.
 Dans un projet Symfony, il y'a deux couches : 
@@ -64,9 +65,9 @@ Avantage : Scalabilité infinie, performances des requêtes ciblées, disponibil
 Inconvénients : Requete couteuses si on sait pas ou chercher la donnée, complexité de répartition (bien répartir les shards)
 **Découpage vertical :** 
 Avantage : Optimisation I/O : si on a un champ textuel immense, mais que la majorité des requetes cherchent date/titre -> on stock pas le gros texte en mémoire, meilleure mise en cache (les champs fréquemment utilisés restent en cache)
-Inconvénients : Cout des jointures, scalabilité limitée (meme si un shard a 3 colonnes, il ne peut gérer 100K lignes)
+Inconvénients : Cout des jointures (il faut recoller les morceaux pr avoir la ligne complète), scalabilité limitée : chaque morceau contient quand même **toutes les lignes**, donc si la table grossit à des milliards de lignes, chaque morceau grossit aussi et on finit par saturer une machine. Le découpage horizontal, lui, peut ajouter des machines à l'infini.
 
-A savoir : Pour modifier le nombre de shards en court de route, on peut pas augmenter comme ça, il faut créer un nouvel indexe et réindexer.
+A savoir : Pour modifier le nombre de shards en cours de route, on peut pas juste changer le chiffre : il faut créer un nouvel index et réindexer (c'est ce que fait `fos:elastica:populate` avec `use_alias`). Il existe aussi les API `_split` (multiplier les shards) et `_shrink` (réduire), mais elles ont des contraintes (index en lecture seule pendant l'opération, nombre de shards multiple de l'ancien).
 
 # **Logstash**
 Logstash s’insère dans la stack Elastic (ELK/Elastic Stack) aux côtés d’Elasticsearch, Kibana et Beats. Il joue le rôle de **moteur ETL** (Extract, Transform, Load), en centralisant et normalisant les données avant leur indexation dans Elasticsearch
@@ -78,7 +79,7 @@ Logstash est un moteur de collecte et de traitement des données via plug-in. Il
 
 Lorsque vous configurez le fichier, il est utile de considérer Logstash comme un pipeline qui prend les données à une extrémité, les traite d’une manière ou d’une autre et les envoie à leur destination (dans ce cas, la destination est Elasticsearch). Un pipeline Logstash comporte deux éléments obligatoires, `input` (l’entrée) et `output` (la sortie), et un élément optionnel, `filter` (nettoyer, anonymiser des données...). Les plugins d’entrée consomment les données d’une source, les plugins de filtrage traitent les données, et les plugins de sortie écrivent les données vers une destination.
 ![[Pasted image 20251218181928.png]]
-Faut lui configurer un fichier logstash.conf dans lequel on va lui définir un json avec les données sur lesquelles il doit taper (l'URI), la collection en question, l'host (9200) ...
+Faut lui configurer un fichier logstash.conf (avec sa propre syntaxe, qui ressemble à du JSON mais n'en est pas) dans lequel on va lui définir les données sur lesquelles il doit taper (l'URI), la collection en question, l'host (9200) ...
 
 Mini exemple de pipeline logstash : 
 ```conf
@@ -110,6 +111,6 @@ Kibana est un outil de visualisation des données indexées à Elasticsearch. Il
 ![[Pasted image 20251218181218.png]]
 
 En gros visualiser sa base de données afin d'en faire des analyses et actions. 
-On récupère la data d'une source, [[Logstash]] process cette données qui est stockée dans [[Suite ELK]], et Kibana permet de visualiser la donnée.
+On récupère la data d'une source, [[Logstash]] process cette donnée qui est stockée dans Elasticsearch, et Kibana permet de visualiser la donnée.
 
 ![[Pasted image 20251218181335.png]]

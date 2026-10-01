@@ -34,7 +34,7 @@ Plus la relation entre les entrées et les sorties est complexe, plus le modèle
 Dans cet exemple on souhaite savoir si une image est un tigre, un chat ou un renard. C'est à nouveau un problème de classification. Etant donné qu'un ordinateur ne peut traiter que des valeurs numériques. Les images sont composés de pixels : Hauteur, largeur & 3 canneaux (RVB)
 L'ordinateur doit apprendre la correspondance entre les pixels et l'étiquette.
 
-**L'approche classique (SY32) : HOG (Histogram of oriented objects) & Sliding Window**
+**L'approche classique (SY32) : HOG (Histogram of Oriented Gradients) & Sliding Window**
 Dans les années 2000 (par exemple pour détecter des visages sur les premiers appareils photo numériques), on utilisait cettea méthode. L'ordinateur balayait l'image de gauche à droite, de haut en bas avec un carré (la fenêtre glissante) . Pour chaque carré, il calculait des vecteurs mathématiques (comme les contours ou les gradients de couleur) et un algorithme classique disait "Oui c'est un chat" ou "Non ce n'est pas un chat"
 On verra une méthode bien plus efficace dans l'apprentissage profond.
 
@@ -49,18 +49,18 @@ Ce qu'il nous faut, c'est un modèle d'apprentissage automatique extrêmement pu
 Les réseaux neuronaux sont des modèles d'apprentissage automatique puissants qui permettent de modéliser des relations d'une complexité arbitraire.
 En réalité, les réseaux de neurones s'inspirent vaguement du cerveau, bien que les similitudes exactes soient sujettes à débat. Leur architecture de base est relativement simple. Ils se composent d'une séquence de couches de « neurones » interconnectés que traverse un signal d'entrée afin de prédire la variable de résultat. On peut les concevoir comme plusieurs couches de régression linéaire superposées, auxquelles s'ajoutent des non-linéarités, ce qui permet au réseau de neurones de modéliser des relations hautement non linéaires.
 
-Les réseaux neuronaux sont souvent composés de nombreuses couches (d'où le nom d'apprentissage profond), ce qui signifie qu'ils peuvent être extrêmement volumineux. ChatGPT, par exemple, repose sur un réseau neuronal constitué de 176 milliards de neurones, soit plus que les quelque 100 milliards de neurones présents dans le cerveau humain. 
+Les réseaux neuronaux sont souvent composés de nombreuses couches (d'où le nom d'apprentissage profond), ce qui signifie qu'ils peuvent être extrêmement volumineux. GPT-3 (le modèle derrière le premier ChatGPT), par exemple, possède **175 milliards de paramètres**. Attention, ce sont des **paramètres** (les poids, = la force des connexions entre neurones), pas des neurones ! On ne peut donc pas comparer avec les ~86 milliards de neurones du cerveau : la bonne comparaison serait avec les **synapses** (les connexions), et le cerveau en a environ 100 000 milliards, soit ~500x plus. 
 
 
 ![[Pasted image 20260516083143.png]]
-Comme dans cet exemple, l'entrée du réseau neuronal est une séquence de mots, mais ici, la sortie est simplement le mot suivant. Il s'agit encore une fois d'une simple tâche de classification. La seule différence est qu'au lieu de deux ou quelques classes seulement, nous avons maintenant autant de classes qu'il y a de mots — disons environ 50 000. C'est le principe de la modélisation du langage : apprendre à prédire le mot suivant.
+Comme dans cet exemple, l'entrée du réseau neuronal est une séquence de mots, mais ici, la sortie est simplement le mot suivant. Il s'agit encore une fois d'une simple tâche de classification. La seule différence est qu'au lieu de deux ou quelques classes seulement, nous avons maintenant autant de classes qu'il y a de mots — disons environ 50 000. (En vrai ce sont des **tokens** et pas des mots, voir [[IA Terms]] : le vocabulaire des modèles récents fait entre 50 000 et 200 000 tokens.) C'est le principe de la modélisation du langage : apprendre à prédire le mot suivant.
 
 ![[Pasted image 20260516084351.png]]Nous connaissons la tâche, et il nous faut maintenant des données pour entraîner le réseau neuronal. Créer une grande quantité de données pour notre tâche de « prédiction du mot suivant » est en réalité assez simple. On trouve une profusion de textes sur Internet, dans les livres, les articles de recherche, etc. Nous pouvons donc facilement constituer un vaste ensemble de données à partir de toutes ces sources. Il n'est même pas nécessaire d'étiqueter les données, car le mot suivant lui-même sert d'étiquette ; c'est pourquoi on parle également _d'apprentissage auto-supervisé_ . L'image ci-dessus illustre ce processus. Une seule séquence peut être transformée en plusieurs séquences d'entraînement.
-Si le réseau neuronal est suffisamment grand et que l'on dispose de suffisamment de données, le modèle linéaire mixte (LLM) devient très performant pour prédire le mot suivant. Sera-t-il parfait ? Non, bien sûr que non, car plusieurs mots peuvent souvent se succéder. Mais il saura sélectionner le mot le plus approprié, tant sur le plan syntaxique que sémantique.
+Si le réseau neuronal est suffisamment grand et que l'on dispose de suffisamment de données, le LLM devient très performant pour prédire le mot suivant. Sera-t-il parfait ? Non, bien sûr que non, car plusieurs mots peuvent souvent se succéder. Mais il saura sélectionner le mot le plus approprié, tant sur le plan syntaxique que sémantique.
 
 ![[Pasted image 20260516084641.png]]Maintenant que nous pouvons prédire un mot, nous pouvons réinjecter la séquence étendue dans le LLM et prédire un autre mot, et ainsi de suite. Autrement dit, grâce à notre LLM entraîné, nous pouvons désormais générer du texte, et non plus un seul mot. C'est pourquoi les LLM sont un exemple de ce que l'on appelle l'IA générative. Nous venons d'apprendre au LLM à « parler », pour ainsi dire, un mot à la fois.
 
-Il y a un détail important à comprendre : il n’est pas toujours nécessaire de prédire le mot le plus probable. On peut par exemple sélectionner les cinq mots les plus probables à un instant donné. Ainsi, le modèle de langage naturel (MLN) peut se montrer plus créatif. Certains MNL permettent même de choisir le degré de déterminisme ou de créativité du résultat. C’est pourquoi, dans ChatGPT, qui utilise cette stratégie d’échantillonnage, la réponse obtenue lors de la régénération est généralement différente.
+Il y a un détail important à comprendre : il n’est pas toujours nécessaire de prédire le mot le plus probable. On peut par exemple sélectionner les cinq mots les plus probables à un instant donné. Ainsi, le LLM peut se montrer plus créatif. Certains LLM permettent même de choisir le degré de déterminisme ou de créativité du résultat. C’est pourquoi, dans ChatGPT, qui utilise cette stratégie d’échantillonnage, la réponse obtenue lors de la régénération est généralement différente.
 
 ![[Pasted image 20260516085220.png]]
 We have actually just learned what the G stands for, namely “generative” — meaning that it was trained on a language generation pretext, which we have discussed. But what about the P and the T?
@@ -81,11 +81,11 @@ Il existe également une troisième étape que certains LLM comme ChatGPT traver
 
 ![[Pasted image 20260516101433.png]]
 Un LLM est très fort pour résumer du texte puisque Internet est rempli de résumés. Il a donc été entraînés sur des longs textes et des résumés.
-Un LLM peut répondre à des questions de culture générales car il a été entraînés sur tellement de texte qu'il sait tout.
+Un LLM peut répondre à des questions de culture générale car il a été entraîné sur tellement de texte qu'il a vu énormément de connaissances (mais il ne "sait" pas tout, et il ne sait pas ce qu'il ne sait pas → hallucinations).
 Enfin, on parle d'hallucination dès qu'un LLM invente une réponse.
 
 ![[Pasted image 20260516101835.png]]
-Le modèle linéaire mixte (LLM) apprend uniquement à générer du texte, et non du texte factuellement exact. Rien dans son entraînement ne lui fournit d'indicateur de la véracité ou de la fiabilité des données d'entraînement. Cependant, là n'est même pas le problème principal : **généralement, les textes que l'on trouve sur Internet et dans les livres semblent assurés, et le LLM apprend donc naturellement à adopter ce même ton**, même s'il est erroné. De cette façon, un LLM est peu sensible à l'incertitude.
+Le LLM apprend uniquement à générer du texte, et non du texte factuellement exact. Rien dans son entraînement ne lui fournit d'indicateur de la véracité ou de la fiabilité des données d'entraînement. Cependant, là n'est même pas le problème principal : **généralement, les textes que l'on trouve sur Internet et dans les livres semblent assurés, et le LLM apprend donc naturellement à adopter ce même ton**, même s'il est erroné. De cette façon, un LLM est peu sensible à l'incertitude.
 ![[Pasted image 20260516102404.png]]
 Si on demande à un LLM quel est l'actuel président, il y'a deux risques : 
 -LLM peut avoir des hallucinations et inventer un président
@@ -93,16 +93,16 @@ Si on demande à un LLM quel est l'actuel président, il y'a deux risques :
 
 Comment résoudre ces deux problèmes ? La solution consiste à fournir au modèle un contexte pertinent. En effet, tout ce qui figure dans la séquence d'entrée du LLM est immédiatement disponible pour son traitement, tandis que les connaissances implicites acquises lors du pré-entraînement sont plus difficiles et plus incertaines à récupérer.
 L'image au dessus illustre un LLM avec un prompt pour le contexte.
-C'est pour ça que les LLM ont étés dotés de la capacité de **scraping** sur internet. Ils font des recherches pour avoir du contexte et etre en mesure de répondre à la question.
+C'est pour ça que les LLM ont été dotés d'outils de **recherche web** (le LLM demande une recherche, l'appli l'exécute et lui renvoie les résultats dans son contexte). Ils font des recherches pour avoir du contexte et etre en mesure de répondre à la question.
 
 
 ![[Pasted image 20260516103109.png]]
-Le Zero-Shot prompting est simplement le concept lorsqu'on donne une tache nouvelle à un LLM à laquelle il n'a pas été entraîné
+Le Zero-Shot prompting c'est quand on demande une tâche au LLM **sans lui donner aucun exemple** dans le prompt ("zéro exemple") : il doit se débrouiller avec ce qu'il a appris. Ex : "Traduis cette phrase en espagnol".
 
 ![[Pasted image 20260516104024.png]]
 Pour des tâches plus complexes, le zero-shot prompting est souvent insuffisant. Donnez des exemples dans l'instruction est ce qu'on appelle le few-shot Learning.
 ![[Pasted image 20260516104256.png]]
-Imaginons que je vous demande : « Qui a gagné la Coupe du monde l’année précédant la naissance de Lionel Messi ? » Que feriez-vous ? Vous procéderiez probablement étape par étape, en notant toutes les solutions intermédiaires nécessaires pour arriver à la bonne réponse. Et c’est exactement ce que permettent également les titulaires d’un LLM.
+Imaginons que je vous demande : « Qui a gagné la Coupe du monde l’année précédant la naissance de Lionel Messi ? » Que feriez-vous ? Vous procéderiez probablement étape par étape, en notant toutes les solutions intermédiaires nécessaires pour arriver à la bonne réponse. Et c’est exactement ce qu'on peut aussi demander à un LLM.
 Il a été constaté que le simple fait de dire à un LLM de « réfléchir étape par étape » peut améliorer considérablement ses performances dans de nombreuses tâches.
 
 Pourquoi cela fonctionne-t-il ? Nous avons toutes les informations nécessaires pour répondre à cette question. Le problème est que ce type de connaissance composite inhabituelle n’est probablement pas directement ancré dans la mémoire interne du LLM. En revanche, les faits individuels qui le composent pourraient l’être, comme la date d’anniversaire de Messi ou les vainqueurs des différentes Coupes du monde.

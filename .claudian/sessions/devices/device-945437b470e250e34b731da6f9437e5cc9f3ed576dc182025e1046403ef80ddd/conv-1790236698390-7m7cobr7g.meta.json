@@ -1,0 +1,24 @@
+{
+  "id": "conv-1790236698390-7m7cobr7g",
+  "providerId": "claude",
+  "title": "System test",
+  "titleGenerationStatus": "success",
+  "createdAt": 1790236698396,
+  "lastActivityAt": 1790675810521,
+  "sessionId": "204ecbd2-22b6-493b-9f4a-76c63d7bd57f",
+  "selectedModel": "sonnet",
+  "providerState": {
+    "providerSessionId": "204ecbd2-22b6-493b-9f4a-76c63d7bd57f"
+  },
+  "linkedContentPath": "CodingNotes/Hébérgement/Ansible.md",
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 2,
+    "cacheCreationInputTokens": 1429,
+    "cacheReadInputTokens": 54854,
+    "contextWindow": 1000000,
+    "contextTokens": 56285,
+    "percentage": 6,
+    "contextWindowIsAuthoritative": true
+  }
+}

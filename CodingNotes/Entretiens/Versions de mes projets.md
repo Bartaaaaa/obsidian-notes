@@ -9,7 +9,7 @@ Stack legacy d'où les anciennes versions.
 Symfony en 5.4 est une LTS (Long Term support, version majeur, symfony tjrs des X.4). LTS un choix légitime, soutenu et stable.
 **Front End** 
 React : 16.13
-Node : 16.2
+Node : 16.2 (fin de vie depuis septembre 2023, dette aussi)
 Create Ract App 3.4
 
 React en 16 possède les hooks et a été simplement la version utilisé lors de la création du projet.
@@ -21,18 +21,19 @@ Symfony : 7.2
 
 Les versions les plus récentes ont étés utilisées lors de la création de l'application.
 Version 8 de PHP ajoute des attributs natifs au lieu des commentaires, opérateurs nullsafe, code plus concis dans le constructeur, plus optimisé, soutenu etc.
-Symfony n'est pas une LTS mais la version la plus récente avait simplement été selectionnée, la version 7 exige Php en  version 8.X, ça va de pair.
+Symfony n'est pas une LTS mais la version la plus récente avait simplement été selectionnée, la version 7 exige PHP 8.2 minimum, ça va de pair.
+⚠️ Symfony 7.2 n'est **plus maintenu** depuis juillet 2025 (une version non-LTS n'est maintenue que 8 mois). La bonne suite : monter en **7.4**, qui est la LTS de la branche 7 (maintenue jusqu'en 2028-2029). Donc c'est aussi de la dette, mais facile à résorber car 7.2 → 7.4 c'est des montées mineures.
 **Front End** 
 React : 18.3
 Vite :  5.4
 
-Version plus récente de React a été utilisée, 19 existe mais 18 est plus stable.
+Version plus récente de React a été utilisée au moment du projet. La 19 est stable depuis décembre 2024 : la 18 a été gardée pour ne pas casser les librairies qui n'étaient pas encore compatibles 19, pas parce que la 19 serait instable.
 Vite est le standart actuel : ESM natif (permet au navigateur de mettre uniquement à jour le fichier modifié et ne pas tout rebuild) + esBuild en dev (outil de compilation écrit en GO, rapide).
 Vite et pas de Next car Mires est une appli interne, pas besoin de SEO, vite suffit et est simple qu'un framework fullstack.
 ## **Caviardage :** 
 Archi distribuée, un orchestrator côté Django et une API d'inférence FastAPI côté GPU qui communiquent en HTTP. (contrainte matérielle, isoler les modèles GPU-bound). C'est 2 services, "leger pr microservice, plutot architecture orientée service"
 Django : 6
-Python 3.12 car cette version supporte bien les Machine Learning (torch, CUDA,  transformers, ultralytics). Torch : Biblio python pr construire et entrainer des modeles, CUDA : techno NVIDIA pr exécuter des calculs sur le GPU, Transformers : librairie huggingFace pr le choix des modeles, Ultralytics : Entreprise derrière YOLO : détecter signatures
+Python 3.12 car cette version supporte bien les Machine Learning (torch, CUDA,  transformers, ultralytics). Torch : Biblio python pr construire et entrainer des modeles, CUDA : techno NVIDIA pr exécuter des calculs sur le GPU, Transformers : librairie huggingFace pr le choix des modeles, Ultralytics : Entreprise qui maintient les versions modernes de YOLO (v5, v8, 11…), qu'on utilise pour détecter les signatures
 ElasticSearch 8.10
 FastAPI  0.136 pour la partie GPU car FastAPI est asynchrone nativement et très léger donc rapide alors que Django est plus lourd mais apporte plus de features
 Les stacks sont pr la plupart modernes et figées, on prend pas automatiquement la plus récente pour ne pas casser un système.
@@ -51,6 +52,6 @@ NextJs pour le SEO et car la majorité de projets sur lesquels j'ai bossé étai
 **NextJs** : Framework construit par dessu React, qui apporte : routing automatique, SSR/SSG (génération cote serveur ou génération statique (SSG permet de générer l'HTML au moment du build donc good pr SEO)), opti d'images, SEO. Il utilise son propre systeme de build.
 **Angular** : Framework autonome
 **Webpack** : standard historique pr le build, très configurable mais lent
-Bibliothèques : React, Vue
+Bibliothèques : React (Vue se présente lui-même comme un framework, mais il est assez léger, entre les deux)
 Framework Complet : UI + undler + rounting : NextJs (React), Nuxt (Vue), Angular
 **NodeJs** : environnement d'exécution qui permet de lancer du Javascript  en dehors du navigateur, sur un serveur. NodeJs permet de faire du dev cote back avec du SSR, pr tout projet on a besoin de node pr faire tourner les outils de compilation & de build.
